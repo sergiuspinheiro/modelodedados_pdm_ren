@@ -1,39 +1,39 @@
-"cod_obje","tema","subtema","nome_obje","legenda","acron_obje","geometria"
-1,"Áreas de proteção do litoral","Faixa marítima de proteção costeira","Faixa marítima de proteção costeira","Faixa marítima de proteção costeira","FMPC","polígono"
-2,"Áreas de proteção do litoral","Praias","Praias","Praias","PRA","polígono"
-3,"Áreas de proteção do litoral","Barreiras detríticas","Restingas","Barreiras detríticas","REST","polígono"
-4,"Áreas de proteção do litoral","Barreiras detríticas","Barreiras soldadas","Barreiras detríticas","BARR_SOLD","polígono"
-5,"Áreas de proteção do litoral","Barreiras detríticas","Ilhas-Barreira","Barreiras detríticas","ILH-BARR","polígono"
-6,"Áreas de proteção do litoral","Tômbolos","Tômbolos","Tômbolos","TOMB","polígono"
-7,"Áreas de proteção do litoral","Sapais","Sapais","Sapais","SAP","polígono"
-8,"Áreas de proteção do litoral","Ilhéus e rochedos emersos no mar","Ilhéus","Ilhéus e rochedos emersos no mar","ILHEUS","polígono"
-9,"Áreas de proteção do litoral","Ilhéus e rochedos emersos no mar","Rochedos emersos no mar","Ilhéus e rochedos emersos no mar","ROCHEDOS","polígono"
-10,"Áreas de proteção do litoral","Dunas costeiras e dunas fósseis","Dunas costeiras litorais","Dunas costeiras litorais","DUN_LIT","polígono"
-11,"Áreas de proteção do litoral","Dunas costeiras e dunas fósseis","Dunas costeiras interiores","Dunas costeiras interiores","DUN_INT","polígono"
-12,"Áreas de proteção do litoral","Dunas costeiras e dunas fósseis","Dunas fósseis","Dunas fósseis","DUN_FOSS","polígono"
-13,"Áreas de proteção do litoral","Arribas e respetivas faixas de proteção","Arribas","Arribas","ARRIB","polígono"
-14,"Áreas de proteção do litoral","Arribas e respetivas faixas de proteção","Faixa de proteção de arribas a partir do rebordo superior","Faixas de proteção das arribas","FPA_SUP","polígono"
-15,"Áreas de proteção do litoral","Arribas e respetivas faixas de proteção","Faixa de proteção de arribas a partir da base da arriba","Faixas de proteção das arribas","FPA_BASE","polígono"
-16,"Áreas de proteção do litoral","Faixa terrestre de proteção costeira","Faixa terrestre de proteção costeira","Faixa terrestre de proteção costeira","FTPC","polígono"
-17,"Áreas de proteção do litoral","Águas do mar","Águas do mar - Margem","Águas do mar - Margem","AG_MAR","polígono"
-18,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Águas de transição e respetivos leitos, margens e faixas de proteção","Águas de transição - Leito","Águas de transição - Leito","AT_LEITO","polígono"
-19,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Águas de transição e respetivos leitos, margens e faixas de proteção","Águas de transição - Margem","Águas de transição - Margem","AT_MARGEM","polígono"
-20,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Águas de transição e respetivos leitos, margens e faixas de proteção","Águas de transição - Faixa de proteção","Águas de transição - Faixa de proteção","AT_FP","polígono"
-21,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Cursos de água e respetivos leitos e margens","Cursos de água - Leito","Cursos de água - Leito","CA_LEITO","linha, polígono"
-22,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Cursos de água e respetivos leitos e margens","Cursos de água - Leito canalizado","Cursos de água - Leito canalizado","CA_LCANAL","linha"
-23,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Cursos de água e respetivos leitos e margens","Cursos de água - Margem","Cursos de água - Margem","CA_MARGEM","polígono"
-24,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Lagoas e lagos e respetivos leitos, margens e faixas de proteção","Lagoas e lagos - Leito","Lagoas e lagos - Leito","LL_LEITO","polígono"
-25,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Lagoas e lagos e respetivos leitos, margens e faixas de proteção","Lagoas e lagos - Margem","Lagoas e lagos - Margem","LL_MARGEM","polígono"
-26,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Lagoas e lagos e respetivos leitos, margens e faixas de proteção","Lagoas e lagos - Faixa de proteção","Lagoas e lagos - Faixa de proteção","LL_FP","polígono"
-27,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção","Albufeiras - Leito","Albufeiras - Leito","ALB_LEITO","polígono"
-28,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção","Albufeiras - Margem","Albufeiras - Margem","ALB_MARGEM","polígono"
-29,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção","Albufeiras - Faixa de proteção","Albufeiras - Faixa de proteção","ALB_FP","polígono"
-30,"Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre","Áreas estratégicas de infiltração, proteção e recarga de aquíferos","Áreas estratégicas de infiltração, proteção e recarga de aquíferos","Áreas estratégicas de infiltração, proteção e recarga de aquíferos","AEIPRA","polígono"
-31,"Áreas de prevenção de riscos naturais","Zonas adjacentes","Zonas adjacentes","Zonas adjacentes","ZA","polígono"
-32,"Áreas de prevenção de riscos naturais","Zonas ameaçadas pelo mar","Zonas ameaçadas pelo mar","Zonas ameaçadas pelo mar","ZAM","polígono"
-33,"Áreas de prevenção de riscos naturais","Zonas ameaçadas pelas cheias","Zonas ameaçadas pelas cheias","Zonas ameaçadas pelas cheias","ZAC","polígono"
-34,"Áreas de prevenção de riscos naturais","Áreas de elevado risco de erosão hídrica do solo","Áreas de elevado risco de erosão hídrica do solo","Áreas de elevado risco de erosão hídrica do solo","AEREHS","polígono"
-35,"Áreas de prevenção de riscos naturais","Áreas de instabilidade de vertentes","Áreas de instabilidade de vertentes","Áreas de instabilidade de vertentes","AIV","polígono"
-36,"Áreas de prevenção de riscos naturais","Áreas de instabilidade de vertentes","Escarpas","Escarpas","ESCARP","polígono"
-37,"Áreas de exclusão","Exclusão por compromisso - C","Exclusão por compromisso - C","Exclusão por compromisso - C","EXCL_C","polígono"
-38,"Áreas de exclusão","Exclusão para a satisfação de carências - E","Exclusão para a satisfação de carências - E","Exclusão para a satisfação de carências - E","EXCL_E","polígono"
+cod_obje,nome_obje,acron_obje,tema,subtema,legenda,geometria
+1,Faixa marítima de proteção costeira,FMPC,Áreas de proteção do litoral,Faixa marítima de proteção costeira,Faixa marítima de proteção costeira,polígono
+2,Praias,PRA,Áreas de proteção do litoral,Praias,Praias,polígono
+3,Restingas,REST,Áreas de proteção do litoral,Barreiras detríticas,Barreiras detríticas,polígono
+4,Barreiras soldadas,BARR_SOLD,Áreas de proteção do litoral,Barreiras detríticas,Barreiras detríticas,polígono
+5,Ilhas-Barreira,ILH-BARR,Áreas de proteção do litoral,Barreiras detríticas,Barreiras detríticas,polígono
+6,Tômbolos,TOMB,Áreas de proteção do litoral,Tômbolos,Tômbolos,polígono
+7,Sapais,SAP,Áreas de proteção do litoral,Sapais,Sapais,polígono
+8,Ilhéus,ILHEUS,Áreas de proteção do litoral,Ilhéus e rochedos emersos no mar,Ilhéus e rochedos emersos no mar,polígono
+9,Rochedos emersos no mar,ROCHEDOS,Áreas de proteção do litoral,Ilhéus e rochedos emersos no mar,Ilhéus e rochedos emersos no mar,polígono
+10,Dunas costeiras litorais,DUN_LIT,Áreas de proteção do litoral,Dunas costeiras e dunas fósseis,Dunas costeiras litorais,polígono
+11,Dunas costeiras interiores,DUN_INT,Áreas de proteção do litoral,Dunas costeiras e dunas fósseis,Dunas costeiras interiores,polígono
+12,Dunas fósseis,DUN_FOSS,Áreas de proteção do litoral,Dunas costeiras e dunas fósseis,Dunas fósseis,polígono
+13,Arribas,ARRIB,Áreas de proteção do litoral,Arribas e respetivas faixas de proteção,Arribas,polígono
+14,Faixa de proteção de arribas a partir do rebordo superior,FPA_SUP,Áreas de proteção do litoral,Arribas e respetivas faixas de proteção,Faixas de proteção das arribas,polígono
+15,Faixa de proteção de arribas a partir da base da arriba,FPA_BASE,Áreas de proteção do litoral,Arribas e respetivas faixas de proteção,Faixas de proteção das arribas,polígono
+16,Faixa terrestre de proteção costeira,FTPC,Áreas de proteção do litoral,Faixa terrestre de proteção costeira,Faixa terrestre de proteção costeira,polígono
+17,Águas do mar - Margem,AG_MAR,Áreas de proteção do litoral,Águas do mar,Águas do mar - Margem,polígono
+18,Águas de transição - Leito,AT_LEITO,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Águas de transição e respetivos leitos, margens e faixas de proteção",Águas de transição - Leito,polígono
+19,Águas de transição - Margem,AT_MARGEM,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Águas de transição e respetivos leitos, margens e faixas de proteção",Águas de transição - Margem,polígono
+20,Águas de transição - Faixa de proteção,AT_FP,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Águas de transição e respetivos leitos, margens e faixas de proteção",Águas de transição - Faixa de proteção,polígono
+21,Cursos de água - Leito,CA_LEITO,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,Cursos de água e respetivos leitos e margens,Cursos de água - Leito,"linha, polígono"
+22,Cursos de água - Leito canalizado,CA_LCANAL,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,Cursos de água e respetivos leitos e margens,Cursos de água - Leito canalizado,linha
+23,Cursos de água - Margem,CA_MARGEM,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,Cursos de água e respetivos leitos e margens,Cursos de água - Margem,polígono
+24,Lagoas e lagos - Leito,LL_LEITO,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Lagoas e lagos e respetivos leitos, margens e faixas de proteção",Lagoas e lagos - Leito,polígono
+25,Lagoas e lagos - Margem,LL_MARGEM,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Lagoas e lagos e respetivos leitos, margens e faixas de proteção",Lagoas e lagos - Margem,polígono
+26,Lagoas e lagos - Faixa de proteção,LL_FP,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Lagoas e lagos e respetivos leitos, margens e faixas de proteção",Lagoas e lagos - Faixa de proteção,polígono
+27,Albufeiras - Leito,ALB_LEITO,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção",Albufeiras - Leito,polígono
+28,Albufeiras - Margem,ALB_MARGEM,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção",Albufeiras - Margem,polígono
+29,Albufeiras - Faixa de proteção,ALB_FP,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Albufeiras que contribuam para a conectividade e coerência ecológica da REN, bem como os respetivos leitos, margens e faixas de proteção",Albufeiras - Faixa de proteção,polígono
+30,"Áreas estratégicas de infiltração, proteção e recarga de aquíferos",AEIPRA,Áreas relevantes para a sustentabilidade do ciclo hidrológico terrestre,"Áreas estratégicas de infiltração, proteção e recarga de aquíferos","Áreas estratégicas de infiltração, proteção e recarga de aquíferos",polígono
+31,Zonas adjacentes,ZA,Áreas de prevenção de riscos naturais,Zonas adjacentes,Zonas adjacentes,polígono
+32,Zonas ameaçadas pelo mar,ZAM,Áreas de prevenção de riscos naturais,Zonas ameaçadas pelo mar,Zonas ameaçadas pelo mar,polígono
+33,Zonas ameaçadas pelas cheias,ZAC,Áreas de prevenção de riscos naturais,Zonas ameaçadas pelas cheias,Zonas ameaçadas pelas cheias,polígono
+34,Áreas de elevado risco de erosão hídrica do solo,AEREHS,Áreas de prevenção de riscos naturais,Áreas de elevado risco de erosão hídrica do solo,Áreas de elevado risco de erosão hídrica do solo,polígono
+35,Áreas de instabilidade de vertentes,AIV,Áreas de prevenção de riscos naturais,Áreas de instabilidade de vertentes,Áreas de instabilidade de vertentes,polígono
+36,Escarpas,ESCARP,Áreas de prevenção de riscos naturais,Áreas de instabilidade de vertentes,Escarpas,polígono
+37,Exclusão por compromisso - C,EXCL_C,Áreas de exclusão,Exclusão por compromisso - C,Exclusão por compromisso - C,polígono
+38,Exclusão para a satisfação de carências - E,EXCL_E,Áreas de exclusão,Exclusão para a satisfação de carências - E,Exclusão para a satisfação de carências - E,polígono
