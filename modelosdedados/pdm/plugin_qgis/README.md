@@ -14,7 +14,7 @@ Este plugin permite auxiliar o utilizador a estruturar e carregar de forma inter
 
 ![download.png](media/download.png)
 
-2. Abrir o QGIS (recomendamos uma versão igual ou superior 3.44)
+2. Abrir o QGIS (recomendamos uma versão igual ou superior 3.44; o plugin é compatível com o QGIS 3.44 e com o QGIS 4.x)
 
 3. Instalar o plugin descarregado - `pdm_importar_md.zip`
 
@@ -36,16 +36,15 @@ Aspeto da interface do plugin
 
 O procedimento para a conversão de uma base de dados de origem para a base de dados modelo é o seguinte:
 
+1. Instale o plugin `pdm_importar_md.zip`, descarregado do repositório GitHub, conforme descrito em [Instalar o Plugin QGIS](#instalar-o-plugin-qgis), e abra-o.
+2. Clique no botão **Descarregar Modelo**, identificado pelo ícone ![zip.png](media/zip.png), na Barra de Ferramentas do plugin.
+3. Na janela **Guardar o Modelo PDM**, escolha a pasta onde pretende guardar o ficheiro `pdm_modelo.zip` e clique em **Guardar**.
+4. Descompacte o ficheiro `pdm_modelo.zip`. Mantenha os ficheiros `PDM_modelo.qgs` e `pdm_modelo_gpkg.gpkg` na mesma pasta, para garantir o correto funcionamento do projeto.
+5. Abra o projeto `PDM_modelo.qgs`.
 
-1. Descarregar o ZIP clicando no botão ![zip.png](media/zip.png) do plugin  ou descarregar do repositório a pasta `modelo` para o computador e abrir o projeto PDM_modelo.qgs
+![modelo_zip_pdm.png](media/modelo_zip_pdm.png)
 
-   - Recomendamos que os ficheiros fiquem na mesma pasta.
-
-   - ![pasta.png](media/pasta.png)
-   
-2. Ativar o PlugIn
-
-3. Executar o PlugIn e analisar os resultados 
+6. Abra o plugin, faça o mapeamento dos dados de origem, execute a importação e analise os resultados.
 
 ![plugin.gif](media/plugin.gif)
 

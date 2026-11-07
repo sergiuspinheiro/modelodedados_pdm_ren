@@ -1,8 +1,10 @@
 # Modelos de Dados do PDM e da REN
 
-Este repositório disponibiliza a documentação, os materiais e os conteúdos digitais relativos aos Modelos de Dados do PDM e da REN.
+Este repositório disponibiliza a documentação, os materiais e os conteúdos digitais associados aos Modelos de Dados do PDM e da REN.
 
-O repositório assume uma função de consulta, apoio à implementação e acompanhamento dos modelos normativos, mantendo também a organização dos materiais dedicados à análise e evolução dos modelos.
+Destina-se à consulta, ao apoio à implementação e ao acompanhamento dos modelos, reunindo igualmente os materiais relacionados com a sua análise, manutenção e evolução.
+
+# Modelos de Dados
 
 ## [1. Modelo de Dados do PDM](modelosdedados/pdm)
 
@@ -10,7 +12,7 @@ O repositório assume uma função de consulta, apoio à implementação e acomp
 
 # Participação e contributos
 
-Para dúvidas, comentários, sugestões e identificação de correções relacionadas com os modelos de dados, **pede-se a utilização das ferramentas de contribuição da plataforma GitHub**:
+Para o esclarecimento de dúvidas, a apresentação de comentários e sugestões ou a comunicação de eventuais correções aos modelos de dados, **deverão ser utilizadas as ferramentas de contribuição disponibilizadas pela plataforma GitHub**:
 
 ## [1. Fórum de debate (Discussions)](https://github.com/dgterritorio/modelodedados_pdm_ren/discussions)
 

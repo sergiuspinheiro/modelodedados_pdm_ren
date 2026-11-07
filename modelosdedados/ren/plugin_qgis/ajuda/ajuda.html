@@ -4,6 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Versão da ajuda (AAAA.MM.DD[.n]): aumentar sempre que a ajuda for alterada.
+       O plugin usa a ajuda local se esta for mais recente do que a remota. -->
+  <meta name="ajuda-versao" content="2026.11.07.3" />
   <title>Ajuda - REN: Importar para o Modelo de Dados (GeoPackage)</title>
   <style>
     body {
@@ -173,6 +176,26 @@
       margin-left: 4px;
     }
 
+    .caixa {
+      background: #eeeeee;
+      border: 1px solid #d6d6d6;
+      padding: 8px 10px;
+      margin: 8px 0;
+    }
+
+    .figura {
+      margin: 8px 0;
+      text-align: center;
+    }
+
+    /* o atributo width="480" serve o painel de ajuda do QGIS; nos browsers a imagem ocupa a largura disponível */
+    .figura img {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+
     .tag-mem {
       display: inline-block;
       background: #e8f5e9;
@@ -194,43 +217,52 @@
   <nav>
     <strong>Índice:</strong><br /><br />
     <a href="#visao-geral">- Visão Geral</a><br />
-    <a href="#toolbar">- Barra de Ferramentas</a><br />
-    <a href="#tab-config">- Configuração / Mapeamento</a><br />
-    <a href="#filtros">- Filtrar por Tipo de Geometria</a><br />
+    <a href="#toolbar">- Barra de Ferramentas do Plugin</a><br />
+    <a href="#tab-config">- Separador Configuração/Mapeamento</a><br />
+    <a href="#modelo">&nbsp;&nbsp;&nbsp;- Modelo</a><br />
+    <a href="#origem">&nbsp;&nbsp;&nbsp;- Dados de origem</a><br />
+    <a href="#mapeamento">&nbsp;&nbsp;&nbsp;- Mapeamento dos dados</a><br />
+    <a href="#importacao">&nbsp;&nbsp;&nbsp;- Importação</a><br />
     <a href="#config-save-load">- Guardar/Carregar Configuração</a><br />
-    <a href="#tab-validacao">- Validação (Anexo III)</a><br />
-    <a href="#geom">- Geometria (GEOS - QGIS)</a><br />
-    <a href="#representacao">- Representação</a><br />
-    <a href="#classificacao">- Classificação</a><br />
-    <a href="#registo">- Registo</a><br />
-    <a href="#faq">- Resolução de Problemas</a><br />
+    <a href="#tab-validacao">- Separador Validação</a><br />
+    <a href="#geom">&nbsp;&nbsp;&nbsp;- Geometria (GEOS - QGIS)</a><br />
+    <a href="#representacao">&nbsp;&nbsp;&nbsp;- Representação</a><br />
+    <a href="#classificacao">&nbsp;&nbsp;&nbsp;- Classificação</a><br />
+    <a href="#registo">- Separador Registo</a><br />
+    <a href="#faq">- Resolução de Problemas (FAQ)</a><br />
   </nav>
 
   <!-- VISÃO GERAL -->
   <section id="visao-geral">
     <h2>Visão Geral</h2>
-    <p>O plugin <strong>REN - Importar para o Modelo de Dados</strong> foi desenvolvido para apoiar a produção e
-      validação da carta da <strong>Reserva Ecológica Nacional (REN)</strong> em conformidade com as normas técnicas da
-      <strong>DGT (Direção-Geral do Território)</strong>, nomeadamente o <strong>Anexo III</strong> do regulamento que
-      define as boas práticas de representação cartográfica.
-    </p>
+    <p>O plugin <strong>REN - Importar para o Modelo de Dados</strong> foi desenvolvido para apoiar a produção,
+      integração e validação da informação geográfica associada à carta de delimitação da
+      <strong>Reserva Ecológica Nacional (REN)</strong>, de acordo com os requisitos estabelecidos na respetiva
+      Norma Técnica, disponível
+      <a href="https://cnt.dgterritorio.gov.pt/sites/default/files/Norma_Tecnica_Producao_reproducao_Cartas_REN.pdf">aqui</a>.</p>
+    <p>O plugin foi desenvolvido pela Direção-Geral do Território (DGT) para utilização no QGIS 3.44 e no QGIS 4.x, com Python 3, e
+      disponibiliza ferramentas destinadas a facilitar quer a preparação, quer a verificação dos dados antes da sua
+      integração no modelo de dados da REN.</p>
     <p>As principais funcionalidades são:</p>
-    <ol>
-      <li><strong>Importação de dados</strong> - carregar camadas de origens diversas (gpkg, PostgreSQL/PostGIS, shp, mpk, csv, (pasta).gdb) e
-        transferi-las para o GeoPackage modelo da REN, com mapeamento de campos e valores conforme o catálogo de
-        objetos (Anexo I).</li>
-      <li><strong>Validação geométrica e temática</strong> - verificar a conformidade das camadas com o Anexo III,
-        detetando erros de geometria, sobreposições linha/polígono, nós pendentes, polígonos fora do limite concelho e
-        classificações incorretas.</li>
-    </ol>
-    <div class="note">O modelo de dados GeoPackage da REN contém as tabelas <span class="kbd">tip_p</span>, <span
-        class="kbd">tip_l</span> e <span class="kbd">excl_p</span>, com os campos obrigatórios definidos
-      pela DGT.</div>
+    <ul>
+      <li><strong>Importação de dados</strong> – carregamento de camadas provenientes de diferentes formatos e fontes
+        de dados e a sua integração no GeoPackage modelo da REN, através do mapeamento de campos e valores, de acordo
+        com o Catálogo de Objetos, a Geometria dos Objetos e a Estrutura da Base de Dados Geográfica, previstos na
+        Parte II e nos Anexos I e II da Norma Técnica.</li>
+      <li><strong>Validação geométrica e temática</strong> – verificação da conformidade dos dados com os requisitos
+        definidos no Anexo III da Norma Técnica (Boas práticas na digitalização e classificação dos objetos),
+        identificando erros de geometria, sobreposições entre linhas e polígonos, nós pendentes, polígonos fora do
+        limite do município, valores em falta ou inválidos e classificações incorretas.</li>
+      <li><strong>Visualização cartográfica</strong> – visualização da informação geográfica de acordo com a
+        representação gráfica do Catálogo de Simbologia previsto no Anexo IV da Norma Técnica (através do projeto
+        modelo <span class="kbd">REN_modelo.qgs</span>).</li>
+    </ul>
   </section>
 
   <!-- TOOLBAR -->
   <section id="toolbar">
-    <h2>Barra de Ferramentas</h2>
+    <h2>Barra de Ferramentas do Plugin</h2>
+    <p>A Barra de Ferramentas localiza-se na parte superior esquerda da janela do plugin.</p>
     <table>
       <tr>
         <th>Ícone</th>
@@ -238,361 +270,502 @@
       </tr>
       <tr>
         <td><img src="img/mActionFileSave.svg" class="icon" alt=""> Guardar</td>
-        <td>Guarda a configuração actual de mapeamento num ficheiro <strong>.json</strong>, para reutilização.</td>
+        <td>Guarda a configuração atual do mapeamento num ficheiro <strong>.json</strong>, para posterior
+          reutilização.</td>
       </tr>
       <tr>
         <td><img src="img/mActionFileOpen.svg" class="icon" alt=""> Carregar</td>
-        <td>Carrega uma configuração de mapeamento previamente guardada em <strong>.json</strong>.</td>
+        <td>Carrega uma configuração de mapeamento previamente guardada num ficheiro <strong>.json</strong> e preenche
+          automaticamente a interface com os parâmetros nele guardados.</td>
       </tr>
       <tr>
         <td><img src="img/zip.svg" class="icon" alt=""> Modelo</td>
-        <td>Descarrega um ficheiro <strong>pdm_modelo.zip</strong> (modelo GeoPackage vazio) para o local escolhido
-          pelo utilizador.</td>
-      </tr>
-      <tr>
-        <td><img src="img/mActionRefresh.svg" class="icon" alt=""> Versão</td>
-        <td>Verifica as versões do plugin e do modelo GeoPackage, quando disponíveis.</td>
+        <td>Descarrega o ficheiro <strong>ren_modelo.zip</strong> (GeoPackage modelo vazio e projeto
+          <span class="kbd">REN_modelo.qgs</span>) e abre uma janela para escolher onde o guardar.</td>
       </tr>
       <tr>
         <td><img src="img/mActionHelpContents.svg" class="icon" alt=""> Ajuda</td>
-        <td>Abre/fecha este painel de ajuda.</td>
+        <td>Abre/fecha o painel de ajuda.</td>
       </tr>
       <tr>
-        <td><img src="img/mActionMergeFeatureAttributes.svg" class="icon" alt=""> Mapear</td>
-        <td>Mapear Automaticamente - o plugin compara os nomes das colunas da origem com os do modelo
-        usando um rácio de similaridade</td>
-      </tr>
-      <tr>
-        <td><img src="img/mIconGeometryCollectionLayer.svg" class="icon" alt=""> Filtro geom</td>
-        <td>Filtro de tipo de geometria (p.ex. point / line / polygon).</td>
-      </tr>
-      <tr>
-        <td><img src="img/mActionOpenTable.svg" class="icon" alt=""> Tabela</td>
-        <td>Abre a tabela de atributos da camada de origem selecionada.</td>
-      </tr>
-      <tr>
-        <td><img src="img/mIconFieldText.svg" class="icon" alt=""> Valores</td>
-        <td>Mostra os valores únicos do campo de origem selecionado (útil para mapear valores).</td>
-      </tr>
-      <tr>
-        <td><img src="img/mActionAddOgrLayer.svg" class="icon" alt=""> Adicionar camada</td>
-        <td>Adicionar camada ao mapa para visualização dos dados geográficos.</td>
+        <td><img src="img/mActionRefresh.svg" class="icon" alt=""> Versão</td>
+        <td>Verifica se existem versões mais recentes do plugin e do GeoPackage modelo. A verificação é feita no
+          repositório oficial da DGT e, enquanto este não estiver publicado, no repositório de desenvolvimento. Quando
+          há uma versão nova, abre uma janela com as alterações e a ligação para a descarregar. Sem ligação à
+          internet, é apresentada a mensagem <em>"Não foi possível verificar se há novas versões"</em>. O resultado
+          fica sempre registado no separador Registo.</td>
       </tr>
     </table>
   </section>
 
   <!-- CONFIGURAÇÃO -->
   <section id="tab-config">
-    <h2>Separador: Configuração / Mapeamento</h2>
+    <h2>Separador Configuração/Mapeamento</h2>
+    <div class="caixa">Este separador permite converter dados de origem, provenientes de diferentes formatos e fontes
+      de dados – GeoPackage (GPKG), PostgreSQL/PostGIS, Shapefile (SHP), pacote de mapas ArcGIS (MPK), CSV e pastas
+      Geodatabase (GDB) – para o modelo de dados da REN, em formato GeoPackage.<br /><br />
+      A conversão é realizada através do mapeamento de campos e de valores, de acordo com o Catálogo de Objetos, a
+      Geometria dos Objetos e a Estrutura da Base de Dados Geográfica, definidos na Parte II e nos Anexos I e II da
+      <a href="https://cnt.dgterritorio.gov.pt/sites/default/files/Norma_Tecnica_Producao_reproducao_Cartas_REN.pdf">Norma
+        Técnica da REN</a>.</div>
+    <p>O separador está organizado em quatro caixas, que correspondem aos passos da importação:
+      <strong>Modelo</strong>, <strong>Dados de origem</strong>, <strong>Mapeamento dos dados</strong> e
+      <strong>Importação</strong>.</p>
 
-    <h3>1. Selecionar o GeoPackage modelo</h3>
-    <p>Clicar em <span class="kbd">Selecionar GeoPackage (Modelo)</span> e escolher o ficheiro <strong>.gpkg</strong>
-      que serve de destino (modelo da REN). Se o ficheiro já estiver carregado como camada no QGIS, é detetado
-      automaticamente.</p>
+    <h3 id="modelo">1. Modelo</h3>
+    <p><strong>Selecionar GeoPackage</strong> – clique no botão e selecione o ficheiro
+      <span class="kbd">ren_modelo_gpkg.gpkg</span>, que será o destino da importação.</p>
     <ul>
-      <li>O plugin valida se o ficheiro tem permissões de escrita.</li>
-      <li>As tabelas disponíveis (<span class="kbd">tip_p</span>, <span class="kbd">tip_l</span>, <span
-          class="kbd">excl_p</span>) são listadas automaticamente.</li>
+      <li>Ao abrir, o plugin procura no projeto QGIS um GeoPackage com as tabelas <span class="kbd">tip_p</span>,
+        <span class="kbd">tip_l</span> e <span class="kbd">excl_p</span>. Se o projeto modelo
+        <span class="kbd">REN_modelo.qgs</span> estiver aberto, o GeoPackage é detetado automaticamente.</li>
+      <li>Se não o encontrar, é apresentado um aviso e é necessário selecioná-lo com o botão
+        <span class="kbd">Selecionar GeoPackage</span>. O plugin não adiciona as tabelas ao Painel de Camadas:
+        apenas as disponibiliza na lista <span class="kbd">Tabela de destino</span>.</li>
+      <li>O plugin verifica se o ficheiro tem permissões de escrita e se contém as tabelas
+        <span class="kbd">tip_p</span>, <span class="kbd">tip_l</span> e <span class="kbd">excl_p</span>.</li>
     </ul>
+    <p><strong>Município</strong> – selecione o município a que respeitam os dados a importar. A lista provém da tabela
+      <span class="kbd">codigo_ine</span> do GeoPackage e o respetivo código <strong>DTCC</strong> é apresentado
+      automaticamente ao lado da lista.</p>
+    <p><strong>Tabela de destino</strong> – selecione a tabela do modelo adequada ao tipo de geometria dos dados a
+      importar: <span class="kbd">tip_p</span> (tipologias, polígonos), <span class="kbd">tip_l</span> (leitos dos
+      cursos de água, linhas) ou <span class="kbd">excl_p</span> (exclusões, polígonos).</p>
+    <p><strong>Ver Catálogo (modelo)</strong> – mostra os códigos e as designações do Catálogo de Objetos da tabela de
+      destino selecionada.</p>
 
-    <h3>2. Tabela de destino e DTCC</h3>
-    <ul>
-      <li>Selecionar a tabela de destino conforme o tipo de geometria a importar.</li>
-      <li>O campo <strong>DTCC</strong> (código de município) é preenchido automaticamente se existir no GeoPackage;
-        pode ser ajustado manualmente.</li>
-      <li>O botão <span class="kbd">Ver Catálogo (modelo)</span> mostra os códigos e designações do catálogo,
-        atualizados em função da tabela selecionada.</li>
-    </ul>
-
-    <h3>3. Adicionar fontes de dados</h3>
+    <h3 id="origem">2. Dados de origem</h3>
+    <p>O plugin permite importar dados das seguintes fontes:</p>
     <table>
       <tr>
-        <th>Formato</th>
+        <th>Fonte</th>
         <th>Como carregar</th>
       </tr>
       <tr>
-        <td>.gpkg</td>
-        <td>Todas as camadas do GeoPackage são importadas de uma vez.</td>
+        <td>GeoPackage (.gpkg)</td>
+        <td>Carrega todas as camadas existentes no GeoPackage.</td>
       </tr>
       <tr>
-        <td>PostgreSQL</td>
-        <td>Ligação a base de dados PostGIS através de perfis de ligação configurados no QGIS.</td>
+        <td>PostgreSQL/PostGIS</td>
+        <td>Estabelece uma ligação à base de dados através das ligações configuradas no QGIS.</td>
       </tr>
       <tr>
-        <td>.shp</td>
-        <td>Ficheiros Shapefile individuais.</td>
+        <td>Shapefile (.shp)</td>
+        <td>Permite selecionar ficheiros Shapefile individualmente.</td>
       </tr>
       <tr>
-        <td>.mpk</td>
-        <td>Pacote de mapas ArcGIS - o plugin procura shapefiles internos via GDAL VFS.</td>
+        <td>Pacote de mapas ArcGIS (.mpk)</td>
+        <td>O plugin procura os Shapefiles existentes no interior do pacote de mapas através do GDAL VFS.</td>
       </tr>
       <tr>
-        <td>.csv</td>
-        <td>Texto delimitado por vírgula, carregado como camada de texto.</td>
+        <td>CSV (.csv)</td>
+        <td>Carrega ficheiros de texto delimitado por vírgulas como camada de texto.</td>
       </tr>
       <tr>
-        <td>Pasta .gdb</td>
-        <td>File Geodatabase (ESRI) - usar o botão <span class="kbd">Adicionar pasta GDB</span>.</td>
+        <td>Geodatabase (.gdb)</td>
+        <td>Carrega as camadas de uma pasta Geodatabase da ESRI.</td>
       </tr>
     </table>
-    <div class="note">Após carregar as fontes, a janela do plugin mantém-se em primeiro plano. As camadas carregadas
-      aparecem no grupo <strong>Tabelas Origem</strong> do painel de camadas do QGIS.</div>
-
-    <h3>4. Mapeamento de campos</h3>
-    <p>Existem três formas de mapear campos da origem para o modelo:</p>
-    <ol>
-      <li><strong>Mapear Automaticamente</strong> - o plugin compara os nomes das colunas da origem com os do modelo
-        usando um rácio de similaridade (por defeito 0,7). O resultado é registado no log.</li>
-      <li><strong>Adicionar linha manualmente</strong> - clicar em <span class="kbd">Adicionar Linha</span> e definir:
-        <span class="kbd">Coluna do Modelo</span> -> <span class="kbd">Tabela de Origem</span> -> <span
-          class="kbd">Coluna
-          de Origem</span> -> (opcional) <span class="kbd">Código (substituição)</span>. <span class="kbr">Se o Código (substituição) for
-          preenchido, esse valor será usado na importação.</span>
-      </li>
-      <li><strong>Mapeamento de valores</strong> - quando a coluna de origem tem designações que correspondem a códigos
-        do catálogo, usar o botão <span class="kbd">Mapear</span> na coluna Ações para associar cada valor de origem a
-        um código de destino. O botão <span class="kbd">Mapear Valores Automaticamente</span> faz esta correspondência
-        por similaridade de texto.</li>
-    </ol>
-    <div class="example"><strong>Exemplo:</strong> se o valor de origem for "Espaços Centrais" e no catálogo existir
-      "Espaço Central", com rácio 0,7 a correspondência é aceite automaticamente.</div>
-
-    <h3>5. Opções de importação</h3>
+    <p>Utilize o botão correspondente à fonte pretendida:</p>
     <ul>
-      <li><strong>Separar geometrias múltiplas (Multipart -> Singlepart)</strong> - ao ativar esta opção, geometrias
-        multi-parte (MultiPolygon, MultiLineString) são decompostas em partes simples antes da inserção, garantindo
-        conformidade com o modelo. <code class="kbr">[Não utilizar na tabela 'excl_p']</code></li>
-      <li><strong>Reparar geometrias inválidas (makeValid)</strong> - aplica automaticamente a função de reparação a
-        geometrias inválidas durante a importação.</li>
+      <li><span class="kbd">Adicionar Ficheiros</span> – para selecionar ficheiros (GPKG, SHP, MPK, CSV);</li>
+      <li><span class="kbd">Adicionar pasta GDB</span> – para selecionar uma pasta Geodatabase;</li>
+      <li><span class="kbd">Adicionar tabelas PostgreSQL</span> – para selecionar tabelas de uma base de dados
+        PostgreSQL/PostGIS.</li>
     </ul>
+    <p>Após o carregamento, as tabelas ficam disponíveis na lista por baixo dos botões. As camadas de origem
+      <strong>não</strong> são adicionadas automaticamente ao Painel de Camadas: para as ver no mapa, utilize o botão
+      <img src="img/mActionAddOgrLayer.svg" class="icon" alt=""> <em>Adicionar camada ao mapa</em> da tabela de
+      mapeamento (ver abaixo), que as coloca no grupo <strong>Tabelas Origem</strong>.</p>
 
-    <h3>6. Executar importação</h3>
-    <p>Após configurar todos os mapeamentos, clicar em <span class="kbd">Executar Importação</span>. O plugin valida
-      cada registo e insere os dados no GeoPackage de destino conforme o mapeamento.</p>
-    <div class="warn">Verificar que o GeoPackage não está aberto por outro processo antes de executar. A importação de
-      grandes volumes de dados pode demorar.</div>
-  </section>
+    <h3 id="mapeamento">3. Mapeamento dos dados</h3>
+    <div class="caixa">
+      <p>O mapeamento estabelece a correspondência entre os campos das tabelas de origem e os campos do modelo de
+        dados da REN. Há duas formas de o fazer:</p>
+      <ul>
+        <li><strong>Adicionar Linha</strong> – cria uma linha na tabela de mapeamento, que o utilizador configura
+          manualmente: <span class="kbd">Campo do Modelo</span> → <span class="kbd">Tabela de Origem</span> →
+          <span class="kbd">Campo de Origem</span> → (opcional) <span class="kbd">Cod. Obje. (substituição)</span>.</li>
+        <li><strong>Mapear Automaticamente (por semelhança dos nomes)</strong> – o plugin compara os nomes dos campos
+          de origem com os nomes dos campos do modelo, utilizando o <strong>Rácio de Similaridade</strong> (semelhança
+          textual, por defeito 0,7), indicado à direita. O resultado é registado no separador Registo.</li>
+      </ul>
+      <p>Em ambos os casos, o botão <span class="kbd">Mapear</span> da coluna <em>Ações</em> permite associar os
+        valores do campo de origem aos códigos de objeto do catálogo. Na janela que abre, o botão
+        <span class="kbd">Mapear Valores Automaticamente</span> faz esta correspondência por semelhança de texto.</p>
+      <div class="example"><strong>Exemplo:</strong> se o valor de origem for "Espaços Centrais" e no catálogo existir
+        a designação "Espaço Central", com o rácio 0,7 a correspondência é aceite automaticamente.</div>
+      <div class="warn"><strong>Atenção:</strong> o mapeamento automático adiciona linhas para <strong>todas</strong>
+        as tabelas de origem carregadas. Antes de importar, remova as linhas das tabelas que não pretende importar.
+        Por exemplo, se adicionou uma pasta GDB com as tabelas tip_p, tip_l e excl_p mas só pretende importar tip_p,
+        remova as linhas de tip_l e excl_p.</div>
 
-  <section id="filtros">
-    <h2>Filtrar por Tipo de Geometria</h2>
-    <p>A tabela de mapeamento tem uma coluna <span class="kbd">Tipo de Geometria</span> e um menu de filtro no cabeçalho que permite:</p>
+      <h3>Colunas da tabela de mapeamento</h3>
+      <ul>
+        <li><strong>Campo do Modelo</strong> – campo da tabela do modelo que recebe os dados de origem. Por
+          predefinição, é <span class="kbd">objeto_codigo</span>.</li>
+        <li><strong>Tabela de Origem</strong> – tabela que contém os dados a importar. Tem dois botões auxiliares:
+          <ul>
+            <li><img src="img/mActionOpenTable.svg" class="icon" alt=""> <em>Abrir tabela de atributos</em> – abre a
+              tabela de atributos da camada de origem;</li>
+            <li><img src="img/mActionAddOgrLayer.svg" class="icon" alt=""> <em>Adicionar camada ao mapa</em> – adiciona
+              a camada de origem ao grupo <strong>Tabelas Origem</strong> do Painel de Camadas.</li>
+          </ul>
+        </li>
+        <li><strong>Campo de Origem</strong> – campo da tabela de origem cujos dados são utilizados. O botão
+          <img src="img/mIconFieldText.svg" class="icon" alt=""> mostra os valores únicos desse campo.</li>
+        <li><strong>Cod. Obje. (substituição)</strong> – campo opcional que define um código de objeto para todos os
+          registos da linha, substituindo, durante a importação, os valores da origem. Por exemplo, se os dados de
+          origem corresponderem a uma única tipologia identificada por um acrónimo, indique aqui o respetivo código: todos
+          os registos são importados com esse código em <span class="kbd">objeto_codigo</span>.</li>
+        <li><strong>Sistema de Coordenadas</strong> – sistema de coordenadas dos dados de origem. Antes da importação,
+          confirme que os dados utilizam o sistema oficial ETRS89 / Portugal TM06 (EPSG:3763).</li>
+        <li><strong>Tipo de Geometria</strong> – tipo de geometria dos dados de origem, preenchido automaticamente.</li>
+        <li><strong>Mapeamento Valores (valor_origem:objeto_codigo)</strong> – correspondências entre os valores de
+          origem e os códigos do Catálogo de Objetos, definidas com o botão <span class="kbd">Mapear</span>.</li>
+        <li><strong>Ações</strong> – botão <span class="kbd">Mapear</span> de cada linha.</li>
+      </ul>
+
+      <h3 id="filtros">Filtrar por tipo de geometria</h3>
+      <p>O botão <span class="kbd">Tipo de Geometria</span>, acima da tabela de mapeamento, filtra a tabela para
+        mostrar apenas as linhas de um tipo de geometria (linha, polígono ou multipolígono). As opções são atualizadas
+        em função das linhas existentes e o estado do filtro é registado no separador Registo.</p>
+
+      <h3>Gerir as linhas de mapeamento</h3>
+      <ul>
+        <li><span class="kbd">Adicionar Linha</span> – adiciona uma linha à tabela;</li>
+        <li><span class="kbd">Remover Linha Selecionada</span> – elimina a linha selecionada;</li>
+        <li><span class="kbd">Limpar Linha Selecionada</span> – limpa o conteúdo da linha, mantendo-a na tabela;</li>
+        <li><span class="kbd">Duplicar Linha Selecionada</span> – cria uma cópia da linha selecionada;</li>
+        <li><span class="kbd">Limpar Tudo</span> – elimina todas as linhas da tabela.</li>
+      </ul>
+    </div>
+
+    <h3 id="importacao">4. Importação</h3>
+    <p>Antes de importar, escolha as <strong>Opções de importação</strong> para as geometrias:</p>
     <ul>
-      <li>Mostrar todas as linhas.</li>
-      <li>Selecionar apenas linhas com um determinado tipo de geometria (p.ex. point / line / polygon).</li>
+      <li><strong>Manter como está</strong> – importa as geometrias sem as alterar, incluindo as inválidas. Cada
+        geometria inválida importada fica assinalada com um aviso no separador Registo.</li>
+      <li><strong>Reparar geometrias inválidas (makeValid)</strong> – tenta corrigir as geometrias inválidas com a
+        função makeValid do QGIS, preservando tanto quanto possível a sua forma. Pode alterar ligeiramente a geometria
+        (por exemplo, eliminando um de dois vértices coincidentes).</li>
+      <li><strong>Ignorar geometrias inválidas</strong> – os elementos com geometria inválida não são importados.</li>
+      <li><strong>Separar geometrias múltiplas (Multipart → Singlepart)</strong> – decompõe as geometrias com várias
+        partes (MultiPolygon, MultiLineString) em elementos individuais, com os mesmos atributos. Esta opção fica
+        desativada quando a tabela de destino é <span class="kbd">excl_p</span>, porque o campo
+        <span class="kbd">exclusao</span> tem de ser único.</li>
     </ul>
-    <p>As opções do filtro são atualizadas dinamicamente com base nos valores presentes na tabela de mapeamento e o estado do filtro é registado no log.</p>
+    <p>O resultado de cada opção é registado, elemento a elemento, no separador Registo.</p>
+    <p>Por fim, confirme que o GeoPackage de destino não está a ser utilizado por outro processo e clique em
+      <span class="kbd">Executar Importação</span>. O plugin valida cada registo e insere os dados no GeoPackage de
+      destino.</p>
+    <div class="warn">O tempo de execução depende do volume de dados e das opções escolhidas. Acompanhe as mensagens,
+      avisos e erros no separador Registo.</div>
   </section>
 
   <section id="config-save-load">
     <h2>Guardar/Carregar Configuração</h2>
-    <p><strong>Guardar Configuração:</strong> cria um ficheiro JSON com o mapeamento actual (inclui caminhos das fontes, mapeamentos por linha, DTCC, planta e rácio de similaridade).</p>
-    <p><strong>Carregar Configuração:</strong> importa um ficheiro JSON e tenta preencher a interface com as definições guardadas (avisa se a versão de configuração for diferente).</p>
+    <p>A configuração do mapeamento pode ser guardada e recuperada a qualquer momento com os botões da Barra de
+      Ferramentas:</p>
+    <ul>
+      <li><strong>Guardar</strong> – guarda a configuração atual (fontes, linhas de mapeamento, município/DTCC e rácio
+        de similaridade) num ficheiro JSON.</li>
+      <li><strong>Carregar</strong> – carrega um ficheiro JSON guardado anteriormente e preenche a interface. Se a
+        versão do ficheiro não for compatível com a do plugin, é apresentado um aviso.</li>
+    </ul>
   </section>
 
   <!-- VALIDAÇÃO -->
   <section id="tab-validacao">
-    <h2>Separador: Validação (Anexo III)</h2>
-    <p>Este separador reúne as ferramentas de validação da carta REN em conformidade com o <strong>Anexo III</strong>
-      das normas técnicas da DGT. As verificações são organizadas em três grupos:</p>
+    <h2>Separador Validação</h2>
+    <div class="caixa">Este separador reúne as ferramentas de validação e correção da carta de delimitação da REN,
+      para verificar a sua conformidade com as Boas práticas na digitalização e classificação dos objetos, previstas no
+      Anexo III da
+      <a href="https://cnt.dgterritorio.gov.pt/sites/default/files/Norma_Tecnica_Producao_reproducao_Cartas_REN.pdf">Norma
+        Técnica da REN</a>.</div>
+    <p>As ferramentas estão organizadas em três grupos:</p>
     <ul>
-      <li><a href="#geom">Geometria (GEOS - QGIS)</a> - erros geométricos intrínsecos aos objetos.</li>
-      <li><a href="#representacao">Representação (Anexo III)</a> - relações topológicas entre camadas.</li>
-      <li><a href="#classificacao">Classificação (Anexo III)</a> - conformidade com o catálogo de objetos.</li>
+      <li><a href="#geom">Geometria (GEOS - QGIS)</a> – erros geométricos intrínsecos aos objetos;</li>
+      <li><a href="#representacao">Representação</a> – relações entre objetos e com os limites administrativos;</li>
+      <li><a href="#classificacao">Classificação</a> – preenchimento dos campos obrigatórios e conformidade com o
+        Catálogo de Objetos.</li>
     </ul>
-    <p>Em todas as verificações, os resultados são apresentados no painel <strong>Resultados da validação</strong> no
-      fundo do separador, e as camadas de erros são criadas no grupo <em>Tabelas Origem</em> do QGIS.</p>
-    <div class="tip">Selecionar a camada a validar na lista <span class="kbd">Camada a validar</span> antes de executar
-      qualquer verificação. A lista é atualizável com o botão <img src="img/mActionRefresh.svg" class="icon" alt="">.
-    </div>
+    <p>Cada grupo tem ferramentas com parâmetros pré-definidos (botões <img src="img/mActionPlay.svg" class="icon"
+        alt="">) e atalhos <strong>Via Processing</strong>, que abrem o algoritmo original do QGIS para o utilizador
+      configurar. As ferramentas podem ser usadas em sequência: a camada resultante de uma operação pode ser a camada a
+      validar da seguinte.</p>
+    <p>Os resultados aparecem no painel <strong>Resultados da validação</strong>, no fundo do separador, e as camadas
+      de resultado são criadas no grupo <strong>Tabelas Origem</strong> do Painel de Camadas, sem alterar os dados
+      originais.</p>
+    <div class="note">Estas ferramentas requerem conhecimentos de Sistemas de Informação Geográfica (SIG) e de
+      geoprocessamento, para interpretar corretamente os resultados e garantir a integridade dos dados.</div>
+
+    <h3>Camada a validar</h3>
+    <p>Selecione a camada a validar na lista. Pode ser uma camada de origem (<em>[Origem]</em>) ou uma camada do
+      projeto (<em>[Projeto]</em>). O botão <img src="img/mActionRefresh.svg" class="icon" alt=""> atualiza esta lista
+      e também todas as outras listas de camadas do separador (Polígonos, Camada da CAOP e filtro dos nós pendentes),
+      mantendo as escolhas feitas sempre que a camada ainda exista.</p>
   </section>
 
   <!--  GEOMETRIA -->
   <section id="geom">
     <h2>Grupo: Geometria (GEOS - QGIS)</h2>
+    <p>Validação e correção de erros geométricos intrínsecos aos objetos, com o <strong>GEOS</strong>, a componente do
+      QGIS que trata a geometria dos dados geográficos (pontos, linhas e polígonos), e com o validador interno do
+      QGIS.</p>
 
     <h3>Verificar geometrias inválidas</h3>
-    <p>Analisa todas as geometrias da camada selecionada usando dois motores em simultâneo:</p>
+    <p>Analisa as geometrias da camada a validar com dois mecanismos em simultâneo:</p>
     <ul>
-      <li><strong>GEOS (GEOSisValidDetail)</strong> - deteta auto-intersecções, auto-intersecções de anel, polígonos
-        não fechados.</li>
-      <li><strong>Validador interno QGIS</strong> - deteta nós duplicados, anéis repetidos e outros problemas que o
-        GEOS considera válidos.</li>
+      <li><strong>GEOS (GEOSisValidDetail)</strong> – deteta auto-interseções, auto-interseções de anel e polígonos
+        não fechados;</li>
+      <li><strong>Validador interno do QGIS</strong> – deteta nós duplicados, anéis repetidos e outras situações que o
+        GEOS considera válidas.</li>
     </ul>
-    <p>São criadas duas camadas de resultado:</p>
+    <p>Durante a verificação é apresentada uma barra de progresso, com o número de elementos verificados, o número de
+      inválidos encontrados e uma estimativa do tempo restante. O botão <span class="kbd">Cancelar</span> interrompe a
+      verificação: se já tiverem sido encontrados elementos inválidos, o plugin pergunta se pretende criar as camadas
+      de resultado apenas com esses elementos.</p>
+    <p>Quando há geometrias inválidas, são criadas duas camadas:</p>
     <ul>
-      <li><span class="kbd">INVALIDAS_*</span> - cópia dos elementos inválidos com o campo <em>motivo_erro</em>
-        (descrição do erro).</li>
-      <li><span class="kbd">ERROS_GEOM_*</span> - pontos na localização exacta de cada erro, com etiqueta de descrição.
-      </li>
+      <li><span class="kbd">INVALIDAS_*</span> – cópia dos elementos inválidos com o campo
+        <em>motivo_erro</em>, que descreve o erro;</li>
+      <li><span class="kbd">ERROS_GEOM_*</span> – pontos na localização exata de cada erro, com a descrição.</li>
     </ul>
-    <div class="note">Esta verificação é equivalente ao algoritmo <em>"Verificar validade"</em> do QGIS Processing com
-      motor GEOS, mas adiciona também a deteção de nós duplicados.</div>
+    <div class="note">Esta verificação equivale ao algoritmo <em>"Verificar validade"</em> do QGIS Processing com o
+      motor GEOS, complementado pela deteção de nós duplicados. Em camadas com polígonos muito grandes pode demorar.</div>
 
-    <h3>Criar camada reparada em memória (makeValid) <span class="tag-mem">Em memória</span></h3>
-    <p>Cria uma nova camada em memória com todas as geometrias da camada selecionada, aplicando
-      <strong>makeValid</strong> às que são inválidas. A camada de saída inclui os campos originais mais dois campos
-      adicionais:
-    </p>
+    <h3>Criar camada corrigida temporária (makeValid)</h3>
+    <p>Cria uma camada temporária com as geometrias da camada a validar, aplicando a função makeValid às inválidas. A
+      camada mantém os campos de origem e acrescenta:</p>
     <ul>
-      <li><span class="kbd">geom_reparada</span> - valor 1 se a geometria foi reparada, 0 se já era válida.</li>
-      <li><span class="kbd">parte_num</span> - número da parte (quando se usa a opção Singlepart).</li>
+      <li><span class="kbd">geom_corrigida</span> – 1 se a geometria foi corrigida, 0 se já era válida;</li>
+      <li><span class="kbd">parte_num</span> – número da parte, quando é usada a opção Multipart → Singlepart.</li>
     </ul>
-    <p>A opção <strong>Separar Multipart -> Singlepart</strong> decompõe automaticamente geometrias multi-parte em
-      partes
-      simples, o que é necessário para conformidade com o modelo de dados da REN.</p>
-    <div class="kbr"><code>[Não utilizar na tabela 'excl_p']</code></div>
-    <div class="tip">Use esta ferramenta para corrigir geometrias antes de executar a importação. A camada resultante
-      pode ser usada diretamente como origem de dados.</div>
+    <p>A opção <strong>Separar geometrias múltiplas (Multipart → Singlepart)</strong> decompõe as geometrias com várias
+      partes em elementos individuais, com os mesmos atributos. Não deve ser usada em camadas de exclusões
+      (<span class="kbd">excl_p</span>), onde o campo <span class="kbd">exclusao</span> tem de ser único.</p>
+    <div class="tip">Use esta ferramenta antes da importação: a camada resultante pode ser usada diretamente como
+      origem dos dados.</div>
+
+    <h3>Verificar nós pendentes (undershoots / overshoots)</h3>
+    <p>Deteta extremidades de linhas da camada a validar que não se ligam a outras linhas da mesma camada:</p>
+    <ul>
+      <li><strong>Undershoot</strong> – a linha termina antes do ponto onde devia ligar;</li>
+      <li><strong>Overshoot</strong> – a linha ultrapassa o ponto onde devia terminar.</li>
+    </ul>
+    <p>Aplica-se apenas a camadas de linhas. É criada a camada <span class="kbd">NOS_PENDENTES_*</span>, com um ponto
+      em cada extremidade problemática e o campo <em>motivo</em>.</p>
+    <p><strong>Polígonos (opcional)</strong> – para evitar falsos positivos, escolha nesta lista a camada de polígonos
+      onde as linhas terminam legitimamente (por exemplo, <span class="kbd">tip_p</span>, com o leito dos cursos de água
+      do tipo polígono ou o leito das albufeiras). As extremidades que tocam nesses polígonos não são assinaladas. Com
+      <em>(nenhum)</em>, todas as extremidades sem ligação são assinaladas. A camada usada no filtro é indicada no
+      Registo.</p>
 
     <h3>Via Processing <span class="tag-proc">Processing</span></h3>
     <ul>
-      <li><strong>Reparar com makeValid</strong> - abre o algoritmo <em>"Corrigir geometrias"</em> do QGIS Processing
+      <li><strong>Verificar validade</strong> – abre o algoritmo <em>"Verificar validade"</em>
+        (<code>qgis:checkvalidity</code>), para uma validação detalhada com as camadas de geometrias válidas, inválidas
+        e de erros.</li>
+      <li><strong>Corrigir geometrias com makeValid</strong> – abre o algoritmo <em>"Corrigir geometrias"</em>
         (<code>native:fixgeometries</code>).</li>
-      <li><strong>Verificar validade</strong> - abre o algoritmo <em>"Verificar validade"</em>
-        (<code>qgis:checkvalidity</code>) com todas as opções de configuração do Processing.</li>
     </ul>
   </section>
 
   <!-- REPRESENTAÇÃO -->
   <section id="representacao">
-    <h2>Grupo: Representação (Anexo III)</h2>
+    <h2>Grupo: Representação</h2>
+    <p>Validação e correção das relações entre objetos e com os limites administrativos.</p>
 
-    <h3>Verificar nós pendentes (undershoots / overshoots)</h3>
-    <p>Deteta extremidades de linhas que não tocam outro elemento da mesma camada:</p>
-    <ul>
-      <li><strong>Undershoot</strong> - a linha termina antes do ponto de ligação (ficou aquém).</li>
-      <li><strong>Overshoot</strong> - a linha passa além do ponto de ligação (ficou além).</li>
-    </ul>
-    <p>Cria a camada <span class="kbd">NOS_PENDENTES_*</span> com um ponto em cada extremidade problemática e o campo
-      <em>motivo</em> com a classificação do erro.
-    </p>
-    <div class="note"><strong>Filtragem inteligente:</strong> extremidades que toquem no limite de polígonos da camada
-      de referência (ex: leito do tipo polígono) não são assinaladas como nós pendentes, evitando falsos positivos.
-    </div>
-
-    <h3>Via Processing <span class="tag-proc">Processing</span></h3>
-    <ul>
-      <li><strong>Corrigir undershoots/overshoots (Snap)</strong> - abre <em>"Ajustar geometrias à camada"</em>
-        (<code>native:snapgeometries</code>) para corrigir as ligações em falta.</li>
-      <li><strong>Separar linhas em intersecções</strong> - abre <em>"Dividir com linhas"</em>
-        (<code>native:splitwithlines</code>) para segmentar linhas nos pontos de cruzamento.</li>
-    </ul>
-
-    <h3>Verificar interrupção de linhas no limite de polígonos (Anexo III)</h3>
-    <p>Verifica se as linhas da camada a validar <strong>penetram no interior</strong> de polígonos com os códigos
-      especificados, em conformidade com a boa prática do Anexo III:</p>
+    <h3><img src="img/mActionPlay.svg" class="icon" alt=""> Verificar interrupções de linhas na interseção com
+      polígonos</h3>
+    <p>Verifica se as linhas da camada a validar entram no interior de polígonos com os códigos indicados, de acordo
+      com a boa prática do Anexo III:</p>
     <blockquote style="border-left:3px solid #0b5; padding-left:10px; color:#333; font-style:italic; margin:8px 0;">"O
       leito do curso de água do tipo linha é interrompido antes de intersetar o leito do curso de água do tipo
       polígono."</blockquote>
     <p><strong>Como configurar:</strong></p>
     <ol>
-      <li>Selecionar a camada de linhas na lista principal (<em>Camada a validar</em>).</li>
-      <li>Selecionar a camada de polígonos de referência na lista <span class="kbd">Polígonos</span>.</li>
-      <li>Escolher o campo de código dos polígonos (<span class="kbd">Código</span>).</li>
-      <li>Introduzir os códigos a verificar no campo <span class="kbd">Códigos</span> (separados por vírgula). Os
-        códigos relevantes da REN para este efeito são: <span class="kbd">17, 18, 19, 21, 23, 24, 25, 27, 28, 33</span>.
-      </li>
-      <li>Clicar em <span class="kbd">Verificar</span>.</li>
+      <li><strong>Camada a validar</strong> – selecione a camada de linhas.</li>
+      <li><strong>Polígonos</strong> – selecione a camada de polígonos a verificar.</li>
+      <li><strong>Código</strong> – campo com o código dos objetos dos polígonos. É escolhido automaticamente, dando
+        prioridade a <span class="kbd">objeto_codigo</span>; pode ser alterado quando a camada usa outro nome.</li>
+      <li><strong>Código dos objetos a validar</strong> – códigos dos polígonos a considerar, separados por vírgulas.
+        Por predefinição são os leitos: <span class="kbd">18, 21, 24, 27</span> (águas de transição, cursos de água, lagoas e lagos e albufeiras). Pode acrescentar outros códigos de polígonos, por exemplo <span class="kbd">17, 19, 23, 25, 28, 33</span>.</li>
+      <li>Clique em <span class="kbd">Verificar</span>.</li>
     </ol>
-    <p>São criadas duas camadas:</p>
+    <p>Quando há linhas no interior dos polígonos, é apresentada uma mensagem e criadas duas camadas temporárias:</p>
     <ul>
-      <li><span class="kbd">LINHAS_SOBREPOEM_POL_*</span> - linhas completas que têm sobreposição (laranja), agrupadas
-        por código de polígono.</li>
-      <li><span class="kbd">SOBREPOSICAO_LP_*</span> - apenas a parte da linha que está dentro do polígono (vermelho
-        espesso), com marcadores nos vértices e círculo central para facilitar a identificação.</li>
+      <li><span class="kbd">LINHAS_SOBREPOEM_POL_*</span> – linhas completas com sobreposição (a laranja), agrupadas
+        por código de polígono;</li>
+      <li><span class="kbd">SOBREPOSICAO_LP_*</span> – apenas os troços das linhas dentro dos polígonos (a vermelho),
+        com marcadores nos vértices e um círculo central para facilitar a identificação.</li>
     </ul>
-    <div class="tip">As linhas problemáticas são também selecionadas na camada original e a tabela de atributos da
-      camada <em>SOBREPOSICAO_LP</em> é aberta automaticamente.</div>
+    <p>As linhas com problemas ficam selecionadas na camada original e a tabela de atributos de
+      <span class="kbd">SOBREPOSICAO_LP_*</span> abre automaticamente.</p>
 
-    <h3>Verificação de corte no limite do município (CAOP)</h3>
-    <p>Verifica se os elementos da camada selecionada <strong>ultrapassam o limite do município</strong>, em
-      conformidade com o Anexo III:</p>
+    <h3><img src="img/mActionPlay.svg" class="icon" alt=""> Verificar o corte no limite do município (CAOP)</h3>
+    <p>Verifica se os elementos da camada a validar ultrapassam o limite do município definido na Carta Administrativa
+      Oficial de Portugal (CAOP), de acordo com o Anexo III:</p>
     <blockquote style="border-left:3px solid #0b5; padding-left:10px; color:#333; font-style:italic; margin:8px 0;">
       "Quando os objetos têm continuidade além do limite administrativo, devem ser artificialmente fechados nos limites
       da CAOP."</blockquote>
     <p><strong>Como configurar:</strong></p>
     <ol>
-      <li>Selecionar a camada CAOP (polígonos de limite administrativo) na lista <span class="kbd">Camada</span>.</li>
-      <li>Selecionar o campo com o nome/código do município (<span class="kbd">Campo</span>) - tipicamente
-        <em>Dicofre (DTCC)</em>, <em>Municipio</em> ou <em>Concelho</em>.
-      </li>
-      <li>Selecionar o município pretendido na lista <span class="kbd">Município</span>.</li>
-      <li>Clicar em <span class="kbd">Verificar limite</span>.</li>
+      <li>Adicione ao Painel de Camadas a CAOP utilizada na delimitação da REN.</li>
+      <li><strong>Camada</strong> – selecione a camada da CAOP.</li>
+      <li><strong>Campo</strong> – campo com o nome ou o código do município. É escolhido automaticamente (Município,
+        Concelho, Dicofre…); pode ser alterado, porque o nome do campo varia entre versões da CAOP.</li>
+      <li><strong>Município</strong> – selecione o município.</li>
+      <li>Clique em <span class="kbd">Verificar</span>.</li>
     </ol>
-    <p>São criadas duas camadas:</p>
+    <p>Quando há elementos fora do limite, é apresentada uma mensagem e criadas duas camadas temporárias:</p>
     <ul>
-      <li><span class="kbd">FORA_LIMITE_*</span> - elementos completos que cruzam o limite (laranja).</li>
-      <li><span class="kbd">EXCESSO_CAOP_*</span> - apenas a parte dos elementos que está fora do município (vermelho),
-        indicando exatamente o que deve ser cortado.</li>
+      <li><span class="kbd">OBJETOS_FORA_LIMITE_*</span> – elementos completos que ultrapassam o limite (a laranja);</li>
+      <li><span class="kbd">PARTES_FORA_LIMITE_*</span> – apenas as partes fora do município (a vermelho), que devem ser
+        corrigidas.</li>
+    </ul>
+
+    <h3>Via Processing <span class="tag-proc">Processing</span></h3>
+    <ul>
+      <li><strong>Corrigir undershoots/overshoots (Snap)</strong> – abre o algoritmo <em>"Ajustar geometrias à
+          camada"</em> (<code>native:snapgeometries</code>), para ligar as extremidades das linhas de acordo com os
+        parâmetros definidos.</li>
+      <li><strong>Separar linhas em interseções</strong> – abre o algoritmo <em>"Dividir com linhas"</em>
+        (<code>native:splitwithlines</code>), para dividir as linhas nos pontos onde se cruzam.</li>
     </ul>
   </section>
 
   <!-- CLASSIFICAÇÃO -->
   <section id="classificacao">
-    <h2>Grupo: Classificação (Anexo III)</h2>
+    <h2>Grupo: Classificação</h2>
+    <p>Validação do preenchimento dos campos obrigatórios e da conformidade dos objetos com o Catálogo de Objetos.</p>
+    <p><strong>Campo identificador dos objetos</strong> – campo da camada a validar que contém o código do objeto
+      (normalmente <span class="kbd">objeto_codigo</span>). É escolhido automaticamente e pode ser alterado.</p>
+    <p><strong>Regras da tabela</strong> – tabela do modelo cujas regras são aplicadas (<span class="kbd">tip_p</span>,
+      <span class="kbd">tip_l</span> ou <span class="kbd">excl_p</span>). É escolhida automaticamente: camadas com o
+      campo <span class="kbd">exclusao</span> usam <span class="kbd">excl_p</span>, camadas de linhas usam
+      <span class="kbd">tip_l</span> e as restantes <span class="kbd">tip_p</span>.</p>
 
-    <h3>Verificar código NULL / inválido (catálogo)</h3>
-    <p>Deteta elementos cujo campo de código de classificação está <strong>nulo, vazio ou não presente no
-        catálogo</strong> de objetos carregado. Conforme o Anexo III, todos os polígonos devem estar classificados com
-      um código válido do catálogo (Anexo I).</p>
-    <p>O campo de código a verificar é selecionável na lista <span class="kbd">Campo do código de classificação</span>
-      - tipicamente <em>objeto_codigo</em>.</p>
+    <h3>Verificar valores NULL / inválidos</h3>
+    <p>Verifica os campos obrigatórios da camada a validar:</p>
+    <table>
+      <tr>
+        <th>Tabela</th>
+        <th>Campo</th>
+        <th>Regra</th>
+      </tr>
+      <tr>
+        <td>tip_p, tip_l, excl_p</td>
+        <td>objeto_codigo</td>
+        <td>Preenchido e existente no catálogo da tabela. Um código de outra tabela ou de outra geometria é
+          assinalado como fora do catálogo.</td>
+      </tr>
+      <tr>
+        <td>excl_p</td>
+        <td>exclusao</td>
+        <td>Preenchido e sem valores repetidos.</td>
+      </tr>
+      <tr>
+        <td>excl_p</td>
+        <td>fundamento, fim_dest</td>
+        <td>Preenchidos nas exclusões 37 (EXCL_C, por compromisso) e 38 (EXCL_E, para satisfação de carências), que
+          devem incluir a fundamentação e o fim a que se destinam (RJREN, artigo 9.º, n.º 3, alínea b)).</td>
+      </tr>
+    </table>
+    <p>Os campos <span class="kbd">fid</span>, <span class="kbd">uuid</span>, <span class="kbd">dtcc</span>,
+      <span class="kbd">area_m2</span> e <span class="kbd">comp_m</span> são preenchidos automaticamente pelo modelo e
+      não são verificados. Se a camada não tiver algum dos campos de <span class="kbd">excl_p</span>, o Registo
+      indica-o e as restantes regras são aplicadas.</p>
+    <p><strong>Resultados:</strong></p>
+    <ul>
+      <li>os elementos com problemas ficam selecionados na camada;</li>
+      <li>é criada a tabela temporária <span class="kbd">VALORES_INVALIDOS_*</span>, com uma linha por problema
+        (<em>fid_origem</em>, <em>campo</em>, <em>valor</em> e <em>motivo</em>), cuja tabela de atributos abre
+        automaticamente;</li>
+      <li>o painel de resultados e o Registo mostram um resumo por campo.</li>
+    </ul>
 
-    <h3>Verificar polígonos adjacentes com mesma tipologia</h3>
-    <p>Deteta polígonos que <strong>partilham fronteira</strong> e têm o <strong>mesmo código de
-        classificação</strong>. Segundo o Anexo III, estes devem ser fundidos, exceto quando a boa prática impõe
-      representações distintas (ex: Restingas/Barreiras, Ilhéus/Rochedos, Faixas de arriba).</p>
+    <h3>Verificar polígonos adjacentes com o mesmo código de objeto</h3>
+    <p>Deteta polígonos da camada a validar que partilham uma fronteira e têm o mesmo valor no campo identificador dos
+      objetos. De acordo com o Anexo III, estes polígonos devem ser fundidos num único polígono, exceto quando a boa
+      prática impõe representações distintas (por exemplo, Restingas/Barreiras/Ilhas-Barreira, Ilhéus/Rochedos, Faixas
+      de arriba). Os polígonos detetados ficam selecionados para análise.</p>
 
     <h3>Via Processing <span class="tag-proc">Processing</span></h3>
     <ul>
-      <li><strong>Fundir por código (Dissolve)</strong> - abre o algoritmo <em>"Dissolver"</em>
-        (<code>native:dissolve</code>) para fundir polígonos adjacentes com o mesmo código, usando o campo de
-        classificação selecionado.</li>
+      <li><strong>Agregar/Fundir por código (Dissolve)</strong> – abre o algoritmo <em>"Dissolver"</em>
+        (<code>native:dissolve</code>) com o campo identificador dos objetos, para fundir os polígonos adjacentes com o
+        mesmo código de objeto.</li>
     </ul>
   </section>
 
   <!-- REGISTO -->
   <section id="registo">
-    <h2>Separador: Registo</h2>
-    <p>O separador <strong>Registo</strong> (Log) apresenta todas as mensagens geradas pelo plugin com data e hora:</p>
+    <h2>Separador Registo</h2>
+    <p>O separador <strong>Registo</strong> (Log) apresenta todas as mensagens geradas pelo plugin, cada uma com a data
+      e a hora:</p>
     <ul>
-      <li>Resultados das verificações de validação (número de erros, camadas criadas).</li>
-      <li>Avisos de importação (campos não mapeados, geometrias reparadas, etc.).</li>
-      <li>Erros e exceções com detalhe técnico.</li>
+      <li>resultados das validações (número de erros, camadas criadas);</li>
+      <li>avisos da importação (campos não mapeados, geometrias corrigidas, ignoradas ou mantidas, etc.);</li>
+      <li>resultado da verificação de versões;</li>
+      <li>erros e exceções, com informação técnica para diagnóstico.</li>
     </ul>
-    <p>O botão <span class="kbd">Guardar Log</span> exporta o conteúdo para um ficheiro <strong>.txt</strong> para
-      arquivo ou reporte técnico.</p>
-    <div class="tip">As mensagens de validação incluem linhas DEBUG quando relevante (ex: contagem de elementos
-      inseridos na camada de reparação). Estas linhas podem ser ignoradas em uso normal.</div>
+    <p>Algumas mensagens são de nível <em>DEBUG</em> (por exemplo, a contagem de elementos inseridos na camada
+      corrigida). Destinam-se ao diagnóstico e podem ser ignoradas na utilização normal.</p>
+    <p>Na parte inferior do separador:</p>
+    <ul>
+      <li><span class="kbd">Guardar Log</span> – exporta o Registo para um ficheiro de texto (.txt), para arquivo ou
+        relatório técnico;</li>
+      <li><span class="kbd">Limpar Log</span> – limpa o conteúdo do Registo.</li>
+    </ul>
   </section>
 
   <!-- FAQ -->
   <section id="faq">
     <h2>Resolução de Problemas (FAQ)</h2>
+    <h3>Separador Configuração/Mapeamento</h3>
     <ul>
-      <li><strong>Não encontro as tabelas no GeoPackage:</strong> verificar se o ficheiro está carregado no QGIS ou
-        selecioná-lo manualmente com <span class="kbd">Selecionar GeoPackage (Modelo)</span>.</li>
-      <li><strong>Ficheiro .mpk não carrega:</strong> verificar a instalação do GDAL e se o suporte VFS
+      <li><strong>Aparece "Nenhum GeoPackage com tabelas tip_p, tip_l ou excl_p foi encontrado":</strong> abra o
+        projeto <span class="kbd">REN_modelo.qgs</span> ou selecione o ficheiro com
+        <span class="kbd">Selecionar GeoPackage</span>.</li>
+      <li><strong>As camadas de origem não aparecem no Painel de Camadas:</strong> é o comportamento normal. Use o botão
+        <em>Adicionar camada ao mapa</em> na coluna Tabela de Origem.</li>
+      <li><strong>O ficheiro .mpk não carrega:</strong> verifique a instalação do GDAL e se o suporte VFS
         (<code>/vsi7z/</code>) está ativo.</li>
-      <li><strong>Erro ao escrever no GeoPackage:</strong> confirmar que o ficheiro não está em utilização por outro
+      <li><strong>Erro ao escrever no GeoPackage:</strong> confirme que o ficheiro não está a ser utilizado por outro
         processo e que tem permissões de escrita.</li>
-      <li><strong>A janela do plugin vai para trás ao carregar dados:</strong> o plugin recupera automaticamente o foco
-        após o carregamento. Se o problema persistir, clicar na barra de título da janela do plugin.</li>
-      <li><strong>Camada REPARADA tem menos elementos do esperado:</strong> verificar no log a linha <em>[DEBUG
-          makeValid]</em> - indica o número de elementos preparados e inseridos. Se divergirem, recarregar o plugin e
-        repetir.</li>
-      <li><strong>A verificação de geometrias é lenta:</strong> o uso simultâneo dos dois validadores (GEOS + interno
-        QGIS) é mais lento que um só. Para camadas grandes, pode cancelar a qualquer momento pela barra de progresso.
-      </li>
-      <li><strong>Nós pendentes assinalados incorretamente:</strong> ativar a filtragem por polígonos - selecionar a
-        camada de polígonos de referência na lista da secção Linha/Polígono antes de verificar nós pendentes.</li>
+      <li><strong>A janela do plugin passa para trás ao carregar dados:</strong> o plugin recupera o foco depois do
+        carregamento. Se não acontecer, clique na barra de título da janela do plugin.</li>
+    </ul>
+    <h3>Separador Validação</h3>
+    <ul>
+      <li><strong>A verificação de geometrias é lenta:</strong> os dois validadores (GEOS e interno do QGIS) são mais
+        lentos do que um só, sobretudo em polígonos muito grandes. Acompanhe a barra de progresso e use
+        <span class="kbd">Cancelar</span> se necessário.</li>
+      <li><strong>A camada corrigida tem menos elementos do que o esperado:</strong> veja no Registo a linha
+        <em>[DEBUG makeValid]</em>, que indica os elementos preparados e inseridos. Se divergirem, recarregue o plugin e
+        repita.</li>
+      <li><strong>Nós pendentes assinalados nas margens de rios ou albufeiras:</strong> escolha a camada de polígonos
+        (por exemplo, <span class="kbd">tip_p</span>) na lista <span class="kbd">Polígonos (opcional)</span> da
+        ferramenta Verificar nós pendentes.</li>
+      <li><strong>Valores assinalados como "fora do catálogo" numa camada correta:</strong> confirme a lista
+        <span class="kbd">Regras da tabela</span> (tip_p, tip_l ou excl_p).</li>
+    </ul>
+    <h3>Barra de Ferramentas</h3>
+    <ul>
+      <li><strong>"Não foi possível verificar se há novas versões":</strong> não há ligação à internet ou o repositório
+        não está disponível. O plugin continua a funcionar normalmente e a Ajuda é carregada a partir da cópia
+        local.</li>
     </ul>
   </section>
 
   <footer>
-    <div><strong>Nota:</strong> DGT - Especificações Técnicas da Carta da REN, Anexo I (Catálogo de
-      Objetos) e Anexo III (Boas Práticas de Representação).</div>
-    <div style="margin-top:6px;">Plugin desenvolvido para QGIS 3.x · Python 3.</div>
+    <div><strong>Referências:</strong> DGT -
+      <a href="https://cnt.dgterritorio.gov.pt/sites/default/files/Norma_Tecnica_Producao_reproducao_Cartas_REN.pdf">Norma
+        Técnica para a produção e reprodução das cartas da REN</a>: Anexo I (Catálogo de Objetos), Anexo III (Boas
+      práticas na digitalização e classificação dos objetos) e Anexo IV (Catálogo de Simbologia).</div>
+    <div style="margin-top:6px;">Plugin desenvolvido pela DGT para QGIS 3.44 e 4.x · Python 3.</div>
   </footer>
 </body>
 
