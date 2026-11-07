@@ -48,7 +48,7 @@ O procedimento para a conversão de uma base de dados de origem para a base de d
 
 ![plugin.gif](media/plugin.gif)
 
-[**Vídeo**](media/plugin.mp4)
+[**Descarregar o vídeo (MP4)**](https://github.com/dgterritorio/modelodedados_pdm_ren/raw/refs/heads/main/modelosdedados/pdm/plugin_qgis/media/plugin.mp4)
 
 
 ### Outros exemplos
@@ -57,4 +57,4 @@ Importar dados de uma configuração `json` guardada - aplicada às condicionant
 
 ![plugin.gif](media/importar_json.gif)
 
-[**Vídeo**](media/importar_json.mp4)
+[**Descarregar o vídeo (MP4)**](https://github.com/dgterritorio/modelodedados_pdm_ren/raw/refs/heads/main/modelosdedados/pdm/plugin_qgis/media/importar_json.mp4)

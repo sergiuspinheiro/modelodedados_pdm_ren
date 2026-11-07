@@ -86,7 +86,7 @@ Para realizar a importação de dados, consulte a Ajuda do plugin no botão ![aj
      pelo link https://github.com/user-attachments/assets/... que o GitHub gera. -->
 ![plugin.gif](media/plugin.gif)
 
-Para acompanhar ao seu ritmo, [descarregue o vídeo](media/plugin.mp4) (MP4, 40 MB) e abra-o num leitor de vídeo, onde pode pausar, recuar e reduzir a velocidade.
+Para acompanhar ao seu ritmo, [descarregue o vídeo](https://github.com/dgterritorio/modelodedados_pdm_ren/raw/refs/heads/main/modelosdedados/ren/plugin_qgis/media/plugin.mp4) (MP4, 40 MB) e abra-o num leitor de vídeo, onde pode pausar, recuar e reduzir a velocidade.
 
 Se abrir o plugin sem o modelo de dados carregado no projeto, aparece a seguinte mensagem:
 
