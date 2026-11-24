@@ -96,14 +96,18 @@ Nesse caso, abra o projeto `REN_modelo.qgs` (opção A) ou use **Selecionar GeoP
 
 ### Ver a sobreposição das tipologias com as exclusões (`excl_tip`)
 
-A `excl_tip` é uma vista do GeoPackage: não é preciso gerá-la, porque é calculada automaticamente a partir dos dados existentes nas tabelas `tip_p` e `excl_p`. Para ver o resultado, no projeto `REN_modelo.qgs`, ative a camada `excl_tip` no grupo **Dif. Exclusões Tipologias** do Painel de Camadas, ou abra a sua tabela de atributos.
+A vista `excl_tip` calcula a interseção espacial entre as tipologias (`tip_p`) e as exclusões (`excl_p`) do mesmo DTCC. Cada polígono corresponde à parte de uma tipologia abrangida por uma exclusão e tem o código e a designação da tipologia, a exclusão e a área da interseção em m² (`area_excl_tip`).
 
-A vista calcula a interseção espacial entre as tipologias (`tip_p`) e as exclusões (`excl_p`) do mesmo DTCC. Cada polígono corresponde à parte de uma tipologia abrangida por uma exclusão e tem o código e a designação da tipologia, a exclusão e a área da interseção em m² (`area_excl_tip`).
+Esta vista é calculada automaticamente a partir dos dados existentes nas tabelas `tip_p` e `excl_p`.
+
+Para visualizar a sobreposição das tipologias com as exclusões, no projeto `REN_modelo.qgs`, ative a camada `excl_tip` no grupo **Dif. Exclusões Tipologias** do Painel de Camadas, ou abra a sua tabela de atributos.
 
 Como a vista é recalculada sempre que é apresentada, com muitos elementos pode demorar alguns minutos a ser desenhada.
 
 ### Visualizar o Quadro Anexo
 
-No projeto `REN_modelo.qgs`, no grupo **Anexo** do Painel de Camadas, abra a tabela de atributos da camada `quadro_anexo` (botão direito sobre a camada > **Abrir tabela de atributos**).
-
 A vista `quadro_anexo` agrega a informação necessária à elaboração do Quadro Anexo publicado no Diário da República. Para cada exclusão identifica as tipologias REN abrangidas, a área de cada uma (m²), o fim a que se destina e a síntese da fundamentação. Resulta de uma consulta SQL que relaciona a vista `excl_tip` com as tabelas `excl_p` e `catalogo`.
+
+Esta vista resulta de uma consulta SQL que relaciona a vista `excl_tip` com as tabelas `excl_p` e `catalogo`. 
+
+Para visualizar o **Quadro Anexo**, no projeto `REN_modelo.qgs`, dentro do grupo Anexo do Painel de Camadas, abra a tabela de atributos da camada `quadro_anexo` (botão direito sobre a camada > **Abrir tabela de atributos**).

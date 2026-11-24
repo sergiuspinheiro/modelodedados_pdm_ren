@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <!-- Versão da ajuda (AAAA.MM.DD[.n]): aumentar sempre que a ajuda for alterada.
        O plugin usa a ajuda local se esta for mais recente do que a remota. -->
-  <meta name="ajuda-versao" content="2026.11.07.3" />
+  <meta name="ajuda-versao" content="2026.11.24.1" />
   <title>Ajuda - REN: Importar para o Modelo de Dados (GeoPackage)</title>
   <style>
     body {
@@ -205,6 +205,15 @@
       font-size: 0.82rem;
       margin-left: 4px;
     }
+
+    .validation-heading {
+      color: #222;
+      border: 0;
+      padding: 0;
+      margin: 16px 0 6px;
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
   </style>
 </head>
 
@@ -223,7 +232,7 @@
     <a href="#origem">&nbsp;&nbsp;&nbsp;- Dados de origem</a><br />
     <a href="#mapeamento">&nbsp;&nbsp;&nbsp;- Mapeamento dos dados</a><br />
     <a href="#importacao">&nbsp;&nbsp;&nbsp;- Importação</a><br />
-    <a href="#config-save-load">- Guardar/Carregar Configuração</a><br />
+    <a href="#config-save-load">&nbsp;&nbsp;&nbsp;- Guardar/Carregar Configuração</a><br />
     <a href="#tab-validacao">- Separador Validação</a><br />
     <a href="#geom">&nbsp;&nbsp;&nbsp;- Geometria (GEOS - QGIS)</a><br />
     <a href="#representacao">&nbsp;&nbsp;&nbsp;- Representação</a><br />
@@ -289,11 +298,12 @@
       </tr>
       <tr>
         <td><img src="img/mActionRefresh.svg" class="icon" alt=""> Versão</td>
-        <td>Verifica se existem versões mais recentes do plugin e do GeoPackage modelo. A verificação é feita no
-          repositório oficial da DGT e, enquanto este não estiver publicado, no repositório de desenvolvimento. Quando
-          há uma versão nova, abre uma janela com as alterações e a ligação para a descarregar. Sem ligação à
-          internet, é apresentada a mensagem <em>"Não foi possível verificar se há novas versões"</em>. O resultado
-          fica sempre registado no separador Registo.</td>
+        <td>Verifica a existência de versões mais recentes do plugin e do GeoPackage modelo. Esta verificação é
+          efetuada no repositório oficial da DGT ou, enquanto este não estiver disponível, no repositório de
+          desenvolvimento. Caso seja detetada uma nova versão, é apresentada uma janela com a descrição das alterações
+          e a respetiva ligação para transferência. Se não existir ligação à Internet, é apresentada a mensagem
+          «Não foi possível verificar se há novas versões». O resultado da verificação é sempre registado no separador
+          Registo.</td>
       </tr>
     </table>
   </section>
@@ -441,6 +451,20 @@
       </ul>
     </div>
 
+    <p>Para efetuar o mapeamento dos campos, adicione uma linha manualmente ou utilize a funcionalidade de mapeamento
+    automático. Em seguida confirme as correspondências entre os campos de origem e os campos do modelo e defina o
+    mapeamento dos valores, quando aplicável.</p>
+
+    <h3 id="config-save-load" class="validation-heading">Guardar/Carregar Configuração</h3>
+    <p>A configuração do mapeamento pode ser guardada e recuperada a qualquer momento com os botões da Barra de
+      Ferramentas:</p>
+    <ul>
+      <li><strong>Guardar</strong> – guarda a configuração atual (fontes, linhas de mapeamento, município/DTCC e
+        rácio de similaridade) num ficheiro JSON.</li>
+      <li><strong>Carregar</strong> – carrega um ficheiro JSON guardado anteriormente e preenche a interface. Se a
+        versão do ficheiro não for compatível com a do plugin, é apresentado um aviso.</li>
+    </ul>
+
     <h3 id="importacao">4. Importação</h3>
     <p>Antes de importar, escolha as <strong>Opções de importação</strong> para as geometrias:</p>
     <ul>
@@ -450,9 +474,9 @@
         função makeValid do QGIS, preservando tanto quanto possível a sua forma. Pode alterar ligeiramente a geometria
         (por exemplo, eliminando um de dois vértices coincidentes).</li>
       <li><strong>Ignorar geometrias inválidas</strong> – os elementos com geometria inválida não são importados.</li>
-      <li><strong>Separar geometrias múltiplas (Multipart → Singlepart)</strong> – decompõe as geometrias com várias
-        partes (MultiPolygon, MultiLineString) em elementos individuais, com os mesmos atributos. Esta opção fica
-        desativada quando a tabela de destino é <span class="kbd">excl_p</span>, porque o campo
+      <li><strong>Separar geometrias múltiplas (Multipart → Singlepart)</strong> – decompõe as geometrias constituídas
+        por várias partes (MultiPolygon, MultiLineString) em geometrias individuais (Singlepart), com os mesmos atributos.
+        Esta opção fica desativada quando a tabela de destino é <span class="kbd">excl_p</span>, porque o campo
         <span class="kbd">exclusao</span> tem de ser único.</li>
     </ul>
     <p>O resultado de cada opção é registado, elemento a elemento, no separador Registo.</p>
@@ -461,18 +485,6 @@
       destino.</p>
     <div class="warn">O tempo de execução depende do volume de dados e das opções escolhidas. Acompanhe as mensagens,
       avisos e erros no separador Registo.</div>
-  </section>
-
-  <section id="config-save-load">
-    <h2>Guardar/Carregar Configuração</h2>
-    <p>A configuração do mapeamento pode ser guardada e recuperada a qualquer momento com os botões da Barra de
-      Ferramentas:</p>
-    <ul>
-      <li><strong>Guardar</strong> – guarda a configuração atual (fontes, linhas de mapeamento, município/DTCC e rácio
-        de similaridade) num ficheiro JSON.</li>
-      <li><strong>Carregar</strong> – carrega um ficheiro JSON guardado anteriormente e preenche a interface. Se a
-        versão do ficheiro não for compatível com a do plugin, é apresentado um aviso.</li>
-    </ul>
   </section>
 
   <!-- VALIDAÇÃO -->
@@ -500,16 +512,17 @@
     <div class="note">Estas ferramentas requerem conhecimentos de Sistemas de Informação Geográfica (SIG) e de
       geoprocessamento, para interpretar corretamente os resultados e garantir a integridade dos dados.</div>
 
-    <h3>Camada a validar</h3>
-    <p>Selecione a camada a validar na lista. Pode ser uma camada de origem (<em>[Origem]</em>) ou uma camada do
-      projeto (<em>[Projeto]</em>). O botão <img src="img/mActionRefresh.svg" class="icon" alt=""> atualiza esta lista
-      e também todas as outras listas de camadas do separador (Polígonos, Camada da CAOP e filtro dos nós pendentes),
-      mantendo as escolhas feitas sempre que a camada ainda exista.</p>
+    <h3 class="validation-heading">Camada a validar</h3>
+    <p>Selecione, na lista, a camada que pretende validar. Pode tratar-se de uma camada de origem
+      (<em>[Origem]</em>) ou de uma camada do projeto (<em>[Projeto]</em>). O botão
+      <img src="img/mActionRefresh.svg" class="icon" alt=""> atualiza esta lista e as restantes listas de camadas do
+      separador Validação usadas como entrada de operações nos grupos seguintes: Polígonos, Camada da CAOP e filtro dos
+      nós pendentes.</p>
   </section>
 
   <!--  GEOMETRIA -->
   <section id="geom">
-    <h2>Grupo: Geometria (GEOS - QGIS)</h2>
+    <h3 class="validation-heading">Geometria (GEOS - QGIS)</h3>
     <p>Validação e correção de erros geométricos intrínsecos aos objetos, com o <strong>GEOS</strong>, a componente do
       QGIS que trata a geometria dos dados geográficos (pontos, linhas e polígonos), e com o validador interno do
       QGIS.</p>
@@ -536,8 +549,8 @@
       motor GEOS, complementado pela deteção de nós duplicados. Em camadas com polígonos muito grandes pode demorar.</div>
 
     <h3>Criar camada corrigida temporária (makeValid)</h3>
-    <p>Cria uma camada temporária com as geometrias da camada a validar, aplicando a função makeValid às inválidas. A
-      camada mantém os campos de origem e acrescenta:</p>
+    <p>A função makeValid tenta corrigir as geometrias inválidas da Camada a corrigir. É criada uma camada temporária
+      que mantém os campos de origem e acrescenta:</p>
     <ul>
       <li><span class="kbd">geom_corrigida</span> – 1 se a geometria foi corrigida, 0 se já era válida;</li>
       <li><span class="kbd">parte_num</span> – número da parte, quando é usada a opção Multipart → Singlepart.</li>
@@ -554,27 +567,30 @@
       <li><strong>Undershoot</strong> – a linha termina antes do ponto onde devia ligar;</li>
       <li><strong>Overshoot</strong> – a linha ultrapassa o ponto onde devia terminar.</li>
     </ul>
-    <p>Aplica-se apenas a camadas de linhas. É criada a camada <span class="kbd">NOS_PENDENTES_*</span>, com um ponto
-      em cada extremidade problemática e o campo <em>motivo</em>.</p>
+    <p>Aplica-se apenas a camadas de linhas. É criada a camada temporária
+      <span class="kbd">NOS_PENDENTES_*</span>, com um ponto em cada extremidade problemática e o campo
+      <em>motivo</em>.</p>
     <p><strong>Polígonos (opcional)</strong> – para evitar falsos positivos, escolha nesta lista a camada de polígonos
-      onde as linhas terminam legitimamente (por exemplo, <span class="kbd">tip_p</span>, com o leito dos cursos de água
-      do tipo polígono ou o leito das albufeiras). As extremidades que tocam nesses polígonos não são assinaladas. Com
-      <em>(nenhum)</em>, todas as extremidades sem ligação são assinaladas. A camada usada no filtro é indicada no
+      onde as linhas terminam legitimamente (por exemplo, o leito dos cursos de água do tipo polígono ou o leito das
+      albufeiras). As extremidades que tocam nesses polígonos não são assinaladas. Com a opção Nenhum, todas as
+      extremidades sem ligação são assinaladas como nós pendentes. A camada selecionada em Polígonos é indicada no
       Registo.</p>
 
     <h3>Via Processing <span class="tag-proc">Processing</span></h3>
     <ul>
       <li><strong>Verificar validade</strong> – abre o algoritmo <em>"Verificar validade"</em>
-        (<code>qgis:checkvalidity</code>), para uma validação detalhada com as camadas de geometrias válidas, inválidas
-        e de erros.</li>
+        (<code>qgis:checkvalidity</code>), para uma validação detalhada das geometrias.</li>
       <li><strong>Corrigir geometrias com makeValid</strong> – abre o algoritmo <em>"Corrigir geometrias"</em>
-        (<code>native:fixgeometries</code>).</li>
+        (<code>native:fixgeometries</code>), para corrigir geometrias com a função makeValid.</li>
+      <li><strong>Corrigir undershoots/overshoots (Snap)</strong> – abre o algoritmo
+        <em>"Ajustar geometrias à camada"</em> (<code>native:snapgeometries</code>), para corrigir as extremidades das
+        linhas que não estabelecem corretamente a ligação pretendida.</li>
     </ul>
   </section>
 
   <!-- REPRESENTAÇÃO -->
   <section id="representacao">
-    <h2>Grupo: Representação</h2>
+    <h3 class="validation-heading">Representação</h3>
     <p>Validação e correção das relações entre objetos e com os limites administrativos.</p>
 
     <h3><img src="img/mActionPlay.svg" class="icon" alt=""> Verificar interrupções de linhas na interseção com
@@ -588,10 +604,13 @@
     <ol>
       <li><strong>Camada a validar</strong> – selecione a camada de linhas.</li>
       <li><strong>Polígonos</strong> – selecione a camada de polígonos a verificar.</li>
-      <li><strong>Código</strong> – campo com o código dos objetos dos polígonos. É escolhido automaticamente, dando
-        prioridade a <span class="kbd">objeto_codigo</span>; pode ser alterado quando a camada usa outro nome.</li>
-      <li><strong>Código dos objetos a validar</strong> – códigos dos polígonos a considerar, separados por vírgulas.
-        Por predefinição são os leitos: <span class="kbd">18, 21, 24, 27</span> (águas de transição, cursos de água, lagoas e lagos e albufeiras). Pode acrescentar outros códigos de polígonos, por exemplo <span class="kbd">17, 19, 23, 25, 28, 33</span>.</li>
+      <li><strong>Código</strong> – campo que identifica os objetos. Por defeito, é considerado o campo
+        <span class="kbd">objeto_codigo</span>, podendo este ser alterado quando o campo tem outra designação.</li>
+      <li><strong>Código dos objetos a validar</strong> – códigos dos objetos poligonais a considerar, separados por
+        vírgulas. Por defeito, são considerados os códigos das tipologias que incluem leitos — águas de transição,
+        cursos de água, lagoas e lagos e albufeiras: <span class="kbd">18, 21, 24 e 27</span>. Podem ser acrescentados
+        outros códigos de objetos poligonais, como, por exemplo,
+        <span class="kbd">17, 19, 23, 25, 28 e 33</span>.</li>
       <li>Clique em <span class="kbd">Verificar</span>.</li>
     </ol>
     <p>Quando há linhas no interior dos polígonos, é apresentada uma mensagem e criadas duas camadas temporárias:</p>
@@ -605,7 +624,7 @@
       <span class="kbd">SOBREPOSICAO_LP_*</span> abre automaticamente.</p>
 
     <h3><img src="img/mActionPlay.svg" class="icon" alt=""> Verificar o corte no limite do município (CAOP)</h3>
-    <p>Verifica se os elementos da camada a validar ultrapassam o limite do município definido na Carta Administrativa
+    <p>Verifica se as geometrias da camada a validar ultrapassam o limite do município definido na Carta Administrativa
       Oficial de Portugal (CAOP), de acordo com o Anexo III:</p>
     <blockquote style="border-left:3px solid #0b5; padding-left:10px; color:#333; font-style:italic; margin:8px 0;">
       "Quando os objetos têm continuidade além do limite administrativo, devem ser artificialmente fechados nos limites
@@ -614,8 +633,9 @@
     <ol>
       <li>Adicione ao Painel de Camadas a CAOP utilizada na delimitação da REN.</li>
       <li><strong>Camada</strong> – selecione a camada da CAOP.</li>
-      <li><strong>Campo</strong> – campo com o nome ou o código do município. É escolhido automaticamente (Município,
-        Concelho, Dicofre…); pode ser alterado, porque o nome do campo varia entre versões da CAOP.</li>
+      <li><strong>Campo</strong> – campo que identifica o município. Por defeito, é considerado o nome ou o código da
+        divisão administrativa do Instituto Nacional de Estatística (código DTCC), podendo este ser alterado quando o
+        campo tem outra designação, em função da versão da CAOP.</li>
       <li><strong>Município</strong> – selecione o município.</li>
       <li>Clique em <span class="kbd">Verificar</span>.</li>
     </ol>
@@ -628,27 +648,19 @@
 
     <h3>Via Processing <span class="tag-proc">Processing</span></h3>
     <ul>
-      <li><strong>Corrigir undershoots/overshoots (Snap)</strong> – abre o algoritmo <em>"Ajustar geometrias à
-          camada"</em> (<code>native:snapgeometries</code>), para ligar as extremidades das linhas de acordo com os
-        parâmetros definidos.</li>
       <li><strong>Separar linhas em interseções</strong> – abre o algoritmo <em>"Dividir com linhas"</em>
-        (<code>native:splitwithlines</code>), para dividir as linhas nos pontos onde se cruzam.</li>
+        (<code>native:splitwithlines</code>), para dividir as linhas nos pontos onde se intersectam.</li>
     </ul>
   </section>
 
   <!-- CLASSIFICAÇÃO -->
   <section id="classificacao">
-    <h2>Grupo: Classificação</h2>
-    <p>Validação do preenchimento dos campos obrigatórios e da conformidade dos objetos com o Catálogo de Objetos.</p>
-    <p><strong>Campo identificador dos objetos</strong> – campo da camada a validar que contém o código do objeto
-      (normalmente <span class="kbd">objeto_codigo</span>). É escolhido automaticamente e pode ser alterado.</p>
-    <p><strong>Regras da tabela</strong> – tabela do modelo cujas regras são aplicadas (<span class="kbd">tip_p</span>,
-      <span class="kbd">tip_l</span> ou <span class="kbd">excl_p</span>). É escolhida automaticamente: camadas com o
-      campo <span class="kbd">exclusao</span> usam <span class="kbd">excl_p</span>, camadas de linhas usam
-      <span class="kbd">tip_l</span> e as restantes <span class="kbd">tip_p</span>.</p>
-
-    <h3>Verificar valores NULL / inválidos</h3>
-    <p>Verifica os campos obrigatórios da camada a validar:</p>
+    <h3 class="validation-heading">Classificação</h3>
+    <p><strong>Campo identificador dos objetos</strong> – Selecione o campo da Camada a validar que identifica os
+      objetos. Por defeito, é considerado o campo <span class="kbd">objeto_codigo</span>, podendo este ser alterado
+      quando o campo tem outra designação.</p>
+    <p><strong>Regras da tabela</strong> – Selecione a tabela cujas regras pretende validar, de acordo com as
+      disposições da norma:</p>
     <table>
       <tr>
         <th>Tabela</th>
@@ -656,28 +668,35 @@
         <th>Regra</th>
       </tr>
       <tr>
-        <td>tip_p, tip_l, excl_p</td>
+        <td>tip_p<br />tip_l<br />excl_p</td>
         <td>objeto_codigo</td>
-        <td>Preenchido e existente no catálogo da tabela. Um código de outra tabela ou de outra geometria é
-          assinalado como fora do catálogo.</td>
+        <td>Campo de preenchimento obrigatório, que deve conter os códigos dos objetos definidos no catálogo e
+          aplicáveis à tabela em validação: tip_l (códigos 21 e 22), tip_p (códigos 1 a 36 e 39) e excl_p (códigos
+          37 e 38).</td>
       </tr>
       <tr>
         <td>excl_p</td>
         <td>exclusao</td>
-        <td>Preenchido e sem valores repetidos.</td>
+        <td>Campo de preenchimento obrigatório, cujo conteúdo deve respeitar o formato definido na Norma (tipo e
+          número de ordem da exclusão) e não pode conter valores repetidos.</td>
       </tr>
       <tr>
         <td>excl_p</td>
         <td>fundamento, fim_dest</td>
-        <td>Preenchidos nas exclusões 37 (EXCL_C, por compromisso) e 38 (EXCL_E, para satisfação de carências), que
-          devem incluir a fundamentação e o fim a que se destinam (RJREN, artigo 9.º, n.º 3, alínea b)).</td>
+        <td>Campo de preenchimento obrigatório.</td>
       </tr>
     </table>
-    <p>Os campos <span class="kbd">fid</span>, <span class="kbd">uuid</span>, <span class="kbd">dtcc</span>,
-      <span class="kbd">area_m2</span> e <span class="kbd">comp_m</span> são preenchidos automaticamente pelo modelo e
-      não são verificados. Se a camada não tiver algum dos campos de <span class="kbd">excl_p</span>, o Registo
-      indica-o e as restantes regras são aplicadas.</p>
-    <p><strong>Resultados:</strong></p>
+    <p>Por defeito, a tabela é selecionada automaticamente em função das características da Camada a validar: as
+      camadas que contêm o campo <span class="kbd">exclusao</span> utilizam a tabela
+      <span class="kbd">excl_p</span>, as camadas de linhas utilizam a tabela <span class="kbd">tip_l</span> e as
+      restantes utilizam a tabela <span class="kbd">tip_p</span>.</p>
+
+    <h3>Verificar valores NULL / inválidos</h3>
+    <p>Verifica a aplicação das regras na Camada a validar.</p>
+    <p><strong>Nota:</strong> os campos <span class="kbd">fid</span>, <span class="kbd">uuid</span>,
+      <span class="kbd">dtcc</span>, <span class="kbd">area_m2</span> e <span class="kbd">comp_m</span> não são
+      verificados por serem preenchidos automaticamente pelo modelo.</p>
+    <p><strong>São produzidos os seguintes resultados:</strong></p>
     <ul>
       <li>os elementos com problemas ficam selecionados na camada;</li>
       <li>é criada a tabela temporária <span class="kbd">VALORES_INVALIDOS_*</span>, com uma linha por problema
@@ -695,8 +714,7 @@
     <h3>Via Processing <span class="tag-proc">Processing</span></h3>
     <ul>
       <li><strong>Agregar/Fundir por código (Dissolve)</strong> – abre o algoritmo <em>"Dissolver"</em>
-        (<code>native:dissolve</code>) com o campo identificador dos objetos, para fundir os polígonos adjacentes com o
-        mesmo código de objeto.</li>
+        (<code>native:dissolve</code>), para fundir os polígonos adjacentes com o mesmo código de objeto.</li>
     </ul>
   </section>
 
