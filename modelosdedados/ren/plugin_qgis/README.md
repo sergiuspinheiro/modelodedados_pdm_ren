@@ -108,6 +108,4 @@ Como a vista é recalculada sempre que é apresentada, com muitos elementos pode
 
 A vista `quadro_anexo` agrega a informação necessária à elaboração do Quadro Anexo publicado no Diário da República. Para cada exclusão identifica as tipologias REN abrangidas, a área de cada uma (m²), o fim a que se destina e a síntese da fundamentação. Resulta de uma consulta SQL que relaciona a vista `excl_tip` com as tabelas `excl_p` e `catalogo`.
 
-Esta vista resulta de uma consulta SQL que relaciona a vista `excl_tip` com as tabelas `excl_p` e `catalogo`. 
-
 Para visualizar o **Quadro Anexo**, no projeto `REN_modelo.qgs`, dentro do grupo Anexo do Painel de Camadas, abra a tabela de atributos da camada `quadro_anexo` (botão direito sobre a camada > **Abrir tabela de atributos**).
